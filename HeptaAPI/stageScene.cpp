@@ -41,6 +41,15 @@ HRESULT stageScene::init(void)
 	}
 	_currentFrameX = 0;
 
+	// 테스트용 플레이어
+	switch (DATABASE->getCharacter())
+	{
+		case KIND_HAMMER:
+			_player = new mario;
+			_player->init(_characterKey[KIND_HAMMER], 50, WINSIZEY / 2);
+		break;
+	}
+
 	return S_OK;
 }
 
@@ -61,6 +70,9 @@ void stageScene::update(void)
 
 		_count = 0;
 	}
+
+	_player->update();
+	CAMERAMANAGER->cameraMove(_player->getPos().x, _player->getPos().y);
 }
 
 
@@ -74,6 +86,7 @@ void stageScene::render(void)
 		_itemBox[i].itemImage->frameRender(CAMERAMANAGER->getMemDC(), _itemBox[i].rc.left, _itemBox[i].rc.top, _currentFrameX, 0);
 	}
 
+	_player->render();
 
 	CAMERAMANAGER->render(getMemDC());
 

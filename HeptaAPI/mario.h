@@ -1,7 +1,11 @@
 #pragma once
 #include "gameNode.h"
 
-#define MARIO_IDLE_WIDTH	
+#define JUMPPOWER	5.0f
+#define GRAVITY		0.1f
+#define LIMIT_X_LEFT	0
+#define LIMIT_X_RIGHT	2815
+#define MARIO_SPEED		2.0f
 
 enum MARIO_STATE
 {
@@ -51,8 +55,13 @@ protected:
 	float _x, _y;
 	float _width, _height;
 	float _speed;
+	float _jumpPower;
 	RECT _rc;
 	MARIO_STATE _state;
+	DIRECTION _dir;
+
+	int _frameX;
+	int _frameTime;
 
 public:
 	mario();
@@ -63,10 +72,15 @@ public:
 	virtual void update();
 	virtual void render();
 
-	virtual void keyControl();
 	virtual void move();
+	virtual void attack();
+	virtual void falling();
 	virtual void draw();
 
+	virtual void marioStateChange(MARIO_STATE state);
+
 	virtual void frameUpdate();
+
+	inline POINT getPos() { return PointMake(_x, _y); }
 };
 

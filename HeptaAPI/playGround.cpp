@@ -27,7 +27,6 @@ HRESULT playGround::init()
 
 	// 씬 추가
 	SCENEMANAGER->addScene("selectScene", new selectScene);
-	SCENEMANAGER->addScene("gameScene", new gameScene);
 
 	//=================스테이지 씬 초기화 ==================================//
 	SCENEMANAGER->addScene("stageScene", new stageScene);
@@ -54,12 +53,12 @@ void playGround::update(void)
 {
 	gameNode::update();
 	//============================ 화면 배율 테스트용 ===============//
-	CAMERAMANAGER->cameraMove(_x, _y);
-	
-	if (KEYMANAGER->isStayKeyDown(VK_RIGHT)) _x += 3;
-	if (KEYMANAGER->isStayKeyDown(VK_LEFT)) _x -= 3;
-	if (KEYMANAGER->isStayKeyDown(VK_UP)) _y -= 3;
-	if (KEYMANAGER->isStayKeyDown(VK_DOWN)) _y += 3;
+	//CAMERAMANAGER->cameraMove(_x, _y);
+	//
+	//if (KEYMANAGER->isStayKeyDown(VK_RIGHT)) _x += 3;
+	//if (KEYMANAGER->isStayKeyDown(VK_LEFT)) _x -= 3;
+	//if (KEYMANAGER->isStayKeyDown(VK_UP)) _y -= 3;
+	//if (KEYMANAGER->isStayKeyDown(VK_DOWN)) _y += 3;
 	//==============================================================//
 
 
@@ -72,7 +71,6 @@ void playGround::render(void)
 {
 	PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, WHITENESS);
 	//================== 이 위는 손대지 마시오 =========================
-
 
 	SCENEMANAGER->render();
 

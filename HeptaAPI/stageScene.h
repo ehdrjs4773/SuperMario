@@ -4,19 +4,20 @@
 // 아이템 박스 구조체!!
 struct ItemBox
 {
-	image itemImage; // 아이템 박스 이미지
+	image* itemImage; // 아이템 박스 이미지
 	RECT rc;		 // 아이템 박스 렉트
 	bool Collsion;   // 아이템 박스를 충돌 했는지?
-	float x, y;     // 아이템 박스 위치
+	int itemNum;    // 아이템 치면 뭐 나올지?
+	
 };
-
 
 
 class stageScene : public gameNode
 {
 private :
-
-	ItemBox _itemBox; //아이템 박스
+	int _currentFrameX;
+	int _count;
+	ItemBox _itemBox[6]; //아이템 박스
 
 
 

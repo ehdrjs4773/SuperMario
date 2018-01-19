@@ -54,12 +54,12 @@ void playGround::update(void)
 {
 	gameNode::update();
 	//============================ 화면 배율 테스트용 ===============//
-	//CAMERAMANAGER->cameraMove(_x, _y);
-	//
-	//if (KEYMANAGER->isStayKeyDown(VK_RIGHT)) _x += 3;
-	//if (KEYMANAGER->isStayKeyDown(VK_LEFT)) _x -= 3;
-	//if (KEYMANAGER->isStayKeyDown(VK_UP)) _y -= 3;
-	//if (KEYMANAGER->isStayKeyDown(VK_DOWN)) _y += 3;
+	CAMERAMANAGER->cameraMove(_x, _y);
+	
+	if (KEYMANAGER->isStayKeyDown(VK_RIGHT)) _x += 3;
+	if (KEYMANAGER->isStayKeyDown(VK_LEFT)) _x -= 3;
+	if (KEYMANAGER->isStayKeyDown(VK_UP)) _y -= 3;
+	if (KEYMANAGER->isStayKeyDown(VK_DOWN)) _y += 3;
 	//==============================================================//
 
 

@@ -58,13 +58,13 @@
     <Filter Include="playGround\selectScene">
       <UniqueIdentifier>{40b977ff-ad17-48b5-8860-11a44c2babe8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\ship">
+      <UniqueIdentifier>{883bdc41-75b3-4751-b699-bf31d5e4e2f0}</UniqueIdentifier>
+    </Filter>
     <Filter Include="playGround\gameScene">
       <UniqueIdentifier>{1111b900-af9f-4f19-802f-568c223daf14}</UniqueIdentifier>
     </Filter>
-    <Filter Include="playGround\mario">
-      <UniqueIdentifier>{883bdc41-75b3-4751-b699-bf31d5e4e2f0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="playGround\mario\mario_kind">
+    <Filter Include="playGround\ship\ship_kind">
       <UniqueIdentifier>{3fca1091-ac2d-4750-bd5b-269d36d2dedb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -153,14 +153,23 @@
     <ClInclude Include="sceneManager.h">
       <Filter>2DGameFramework\Manager</Filter>
     </ClInclude>
+    <ClInclude Include="ship.h">
+      <Filter>playGround\ship</Filter>
+    </ClInclude>
     <ClInclude Include="gameScene.h">
       <Filter>playGround\gameScene</Filter>
     </ClInclude>
     <ClInclude Include="selectScene.h">
       <Filter>playGround\selectScene</Filter>
     </ClInclude>
-    <ClInclude Include="mario.h">
-      <Filter>playGround\mario</Filter>
+    <ClInclude Include="battle.h">
+      <Filter>playGround\ship\ship_kind</Filter>
+    </ClInclude>
+    <ClInclude Include="carrier.h">
+      <Filter>playGround\ship\ship_kind</Filter>
+    </ClInclude>
+    <ClInclude Include="mutalisk.h">
+      <Filter>playGround\ship\ship_kind</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -239,11 +248,20 @@
     <ClCompile Include="selectScene.cpp">
       <Filter>playGround\selectScene</Filter>
     </ClCompile>
+    <ClCompile Include="ship.cpp">
+      <Filter>playGround\ship</Filter>
+    </ClCompile>
     <ClCompile Include="gameScene.cpp">
       <Filter>playGround\gameScene</Filter>
     </ClCompile>
-    <ClCompile Include="mario.cpp">
-      <Filter>playGround\mario</Filter>
+    <ClCompile Include="battle.cpp">
+      <Filter>playGround\ship\ship_kind</Filter>
+    </ClCompile>
+    <ClCompile Include="carrier.cpp">
+      <Filter>playGround\ship\ship_kind</Filter>
+    </ClCompile>
+    <ClCompile Include="mutalisk.cpp">
+      <Filter>playGround\ship\ship_kind</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 #pragma once
 #include "gameNode.h"
-#include "mario.h"
+#include "ship.h"
 #include "button.h"
 
 #define SELECT_WIDTH	168

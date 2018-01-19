@@ -22,10 +22,10 @@ HRESULT playGround::init()
 
 
 	// 씬 추가
-	//SCENEMANAGER->addScene("selectScene", new selectScene);
-	//SCENEMANAGER->addScene("gameScene", new gameScene);
+	SCENEMANAGER->addScene("selectScene", new selectScene);
+	SCENEMANAGER->addScene("gameScene", new gameScene);
 
-	//SCENEMANAGER->changeScene("selectScene");
+	SCENEMANAGER->changeScene("selectScene");
 
 	//DATABASE->init();
 
@@ -44,7 +44,7 @@ void playGround::update(void)
 {
 	gameNode::update();
 
-	//SCENEMANAGER->update();
+	SCENEMANAGER->update();
 }
 
 //그리는거.......
@@ -55,7 +55,7 @@ void playGround::render(void)
 
 	IMAGEMANAGER->findImage("background")->render(getMemDC());
 
-	//SCENEMANAGER->render();
+	SCENEMANAGER->render();
 
 	//================== 이 아래는 손대지 마시오 ========================
 	this->getBackBuffer()->render(getHDC(), 0, 0);//hdc영역에 그려준다 

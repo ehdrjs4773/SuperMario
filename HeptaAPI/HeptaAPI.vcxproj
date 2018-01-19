@@ -137,8 +137,10 @@
   <ItemGroup>
     <ClCompile Include="action.cpp" />
     <ClCompile Include="animation.cpp" />
+    <ClCompile Include="battle.cpp" />
     <ClCompile Include="button.cpp" />
     <ClCompile Include="cameraManager.cpp" />
+    <ClCompile Include="carrier.cpp" />
     <ClCompile Include="collision.cpp" />
     <ClCompile Include="database.cpp" />
     <ClCompile Include="effect.cpp" />
@@ -150,11 +152,12 @@
     <ClCompile Include="imageManager.cpp" />
     <ClCompile Include="iniDataManager.cpp" />
     <ClCompile Include="keyManager.cpp" />
+    <ClCompile Include="mutalisk.cpp" />
     <ClCompile Include="playGround.cpp" />
     <ClCompile Include="progressBar.cpp" />
     <ClCompile Include="sceneManager.cpp" />
     <ClCompile Include="selectScene.cpp" />
-    <ClCompile Include="mario.cpp" />
+    <ClCompile Include="ship.cpp" />
     <ClCompile Include="soundManager.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="timeManager.cpp" />
@@ -166,8 +169,10 @@
   <ItemGroup>
     <ClInclude Include="action.h" />
     <ClInclude Include="animation.h" />
+    <ClInclude Include="battle.h" />
     <ClInclude Include="button.h" />
     <ClInclude Include="cameraManager.h" />
+    <ClInclude Include="carrier.h" />
     <ClInclude Include="collision.h" />
     <ClInclude Include="commonMacroFunction.h" />
     <ClInclude Include="database.h" />
@@ -180,13 +185,14 @@
     <ClInclude Include="imageManager.h" />
     <ClInclude Include="iniDataManager.h" />
     <ClInclude Include="keyManager.h" />
+    <ClInclude Include="mutalisk.h" />
     <ClInclude Include="playGround.h" />
     <ClInclude Include="progressBar.h" />
     <ClInclude Include="randomFunction.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="sceneManager.h" />
     <ClInclude Include="selectScene.h" />
-    <ClInclude Include="mario.h" />
+    <ClInclude Include="ship.h" />
     <ClInclude Include="singletonBase.h" />
     <ClInclude Include="soundManager.h" />
     <ClInclude Include="stdafx.h" />

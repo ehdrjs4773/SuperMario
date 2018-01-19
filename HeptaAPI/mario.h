@@ -1,45 +1,44 @@
 #pragma once
 #include "gameNode.h"
 
-enum SHIP_STATE
+enum MARIO_STATE
 {
 	STATE_IDLE,
 	STATE_MOVE,
+	STATE_JUMP,
+	STATE_ATTACK,
+	STATE_DIE,
 	STATE_END
 };
 
-enum SHIP_KIND
+enum MARIO_KIND
 {
-	KIND_BATTLE,
-	KIND_CARRIER,
-	KIND_MUTALISK,
+	KIND_POMPOKO,
+	KIND_FIRE,
+	KIND_HAMMER,
 	KIND_END
 };
 
 static string _characterKey[KIND_END] =
 {
-	"battle",
-	"carrier",
-	"mutalisk"
+	"pompoko",
+	"fire",
+	"hammer"
 };
 
-class ship : public gameNode
+class mario : public gameNode
 {
 protected:
 	string _imageName;
 	float _x, _y;
 	float _width, _height;
 	float _speed;
-	float _angle;
-	float _angleSpeed;
-	float _maxSpeed;
-	float _accel;
 	RECT _rc;
-	SHIP_STATE _state;
+	MARIO_STATE _state;
 
 public:
-	ship();
-	~ship();
+	mario();
+	~mario();
 
 	virtual HRESULT init(const string imageName, float x, float y);
 	virtual void release();

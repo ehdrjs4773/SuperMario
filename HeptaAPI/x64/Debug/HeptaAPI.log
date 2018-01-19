@@ -1,0 +1,12 @@
+﻿  winMain.cpp
+d:\sga자료들\팀포폴\슈퍼마리오\heptaapi\button.h(68): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\sga자료들\팀포폴\슈퍼마리오\heptaapi\button.h(69): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\sga자료들\팀포폴\슈퍼마리오\heptaapi\button.h(70): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\sga자료들\팀포폴\슈퍼마리오\heptaapi\winmain.cpp(108): warning C4244: 'return': 'WPARAM'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  playGround.cpp
+d:\sga자료들\팀포폴\슈퍼마리오\heptaapi\button.h(68): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\sga자료들\팀포폴\슈퍼마리오\heptaapi\button.h(69): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\sga자료들\팀포폴\슈퍼마리오\heptaapi\button.h(70): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  gameScene.cpp
+  코드를 생성하고 있습니다...
+  HeptaAPI.vcxproj -> D:\SGA자료들\팀포폴\슈퍼마리오\x64\Debug\HeptaAPI.exe

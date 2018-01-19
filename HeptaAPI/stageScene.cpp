@@ -19,6 +19,11 @@ HRESULT stageScene::init(void)
 {
 	IMAGEMANAGER->addImage("πË∞Ê", ".\\bmps\\stageOne.bmp", 2815, 432, false, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("µﬁπË∞Ê", ".\\bmps\\stageOneBackGround.bmp", 2815, 432, false, true, RGB(255, 0, 255));
+	SOUNDMANAGER->addSound("πË∞Ê¿Ωæ«", ".\\Sounds\\bgm.mp3", false, true);
+	SOUNDMANAGER->play("πË∞Ê¿Ωæ«", 1.0F);
+
+
+
 
 	return S_OK;
 }

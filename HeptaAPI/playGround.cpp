@@ -35,7 +35,7 @@ HRESULT playGround::init()
 	//==============위 에꺼랑 마찬가지============ 내꺼임(동건) =============//
 
 
-	SCENEMANAGER->changeScene("stageScene");
+	SCENEMANAGER->changeScene("selectScene");
 
 	//DATABASE->init();
 
@@ -54,12 +54,12 @@ void playGround::update(void)
 {
 	gameNode::update();
 	//============================ 화면 배율 테스트용 ===============//
-	CAMERAMANAGER->cameraMove(_x, _y);
-	
-	if (KEYMANAGER->isStayKeyDown(VK_RIGHT)) _x += 3;
-	if (KEYMANAGER->isStayKeyDown(VK_LEFT)) _x -= 3;
-	if (KEYMANAGER->isStayKeyDown(VK_UP)) _y -= 3;
-	if (KEYMANAGER->isStayKeyDown(VK_DOWN)) _y += 3;
+	//CAMERAMANAGER->cameraMove(_x, _y);
+	//
+	//if (KEYMANAGER->isStayKeyDown(VK_RIGHT)) _x += 3;
+	//if (KEYMANAGER->isStayKeyDown(VK_LEFT)) _x -= 3;
+	//if (KEYMANAGER->isStayKeyDown(VK_UP)) _y -= 3;
+	//if (KEYMANAGER->isStayKeyDown(VK_DOWN)) _y += 3;
 	//==============================================================//
 
 
@@ -75,8 +75,6 @@ void playGround::render(void)
 
 
 	SCENEMANAGER->render();
-
-    CAMERAMANAGER->render(getMemDC());
 
 	//================== 이 아래는 손대지 마시오 ========================
 	this->getBackBuffer()->render(getHDC(), 0, 0);//hdc영역에 그려준다 

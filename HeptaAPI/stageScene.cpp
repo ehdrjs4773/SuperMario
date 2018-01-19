@@ -40,5 +40,7 @@ void stageScene::render(void)
 {
 	//IMAGEMANAGER->findImage("µŞ¹è°æ")->render(getMemDC());
 	IMAGEMANAGER->findImage("¹è°æ")->render(CAMERAMANAGER->getMemDC(), 0, 0);
+
+	CAMERAMANAGER->render(getMemDC());
 }
 

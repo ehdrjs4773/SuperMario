@@ -24,7 +24,7 @@ HRESULT mario::init(const string imageName, float x, float y)
 	IMAGEMANAGER->findImage(imageName)->setFrameX(0);
 	_rc = RectMakeCenter(x, y, _width, _height);
 
-	_speed = 0.0f;
+	_speed = 5.0f;
 
 	return S_OK;
 }

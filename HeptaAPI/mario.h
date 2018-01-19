@@ -1,6 +1,8 @@
 #pragma once
 #include "gameNode.h"
 
+#define MARIO_IDLE_WIDTH	
+
 enum MARIO_STATE
 {
 	STATE_IDLE,
@@ -19,11 +21,27 @@ enum MARIO_KIND
 	KIND_END
 };
 
+enum DIRECTION
+{
+	DIR_LEFT,
+	DIR_RIGHT,
+	DIR_END
+};
+
 static string _characterKey[KIND_END] =
 {
 	"pompoko",
 	"fire",
 	"hammer"
+};
+
+static string _stateKey[STATE_END] = 
+{
+	"_idle",
+	"_move",
+	"_jump",
+	"_attack",
+	"_die"
 };
 
 class mario : public gameNode

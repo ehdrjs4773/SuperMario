@@ -171,6 +171,9 @@
     <ClInclude Include="mutalisk.h">
       <Filter>playGround\ship\ship_kind</Filter>
     </ClInclude>
+    <ClInclude Include="stageScene.h">
+      <Filter>playGround\gameScene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -262,6 +265,9 @@
     </ClCompile>
     <ClCompile Include="mutalisk.cpp">
       <Filter>playGround\ship\ship_kind</Filter>
+    </ClCompile>
+    <ClCompile Include="stageScene.cpp">
+      <Filter>playGround\gameScene</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

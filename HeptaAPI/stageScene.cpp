@@ -10,7 +10,6 @@ stageScene::stageScene()
 
 stageScene::~stageScene()
 {
-
 }
 
 
@@ -18,7 +17,8 @@ stageScene::~stageScene()
 
 HRESULT stageScene::init(void)  
 {
-	IMAGEMANAGER->addImage("배경", ".\\bmp\\stargeOne.bmp", 2815, 432, false, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("배경", ".\\bmps\\stageOne.bmp", 2815, 432, false, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("뒷배경", ".\\bmps\\stageOneBackGround.bmp", 2815, 432, false, true, RGB(255, 0, 255));
 
 	return S_OK;
 }
@@ -38,6 +38,7 @@ void stageScene::update(void)
 
 void stageScene::render(void)  
 {
-
+	//IMAGEMANAGER->findImage("뒷배경")->render(getMemDC());
+	IMAGEMANAGER->findImage("배경")->render(CAMERAMANAGER->getMemDC(), 0, 0);
 }
 

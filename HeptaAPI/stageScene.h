@@ -16,7 +16,6 @@ class stageScene : public gameNode
 {
 private :
 
-	image* _stageImage; // 스테이지 이미지
 	ItemBox _itemBox; //아이템 박스
 
 

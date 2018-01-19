@@ -1,16 +1,16 @@
 #include "stdafx.h"
 #include "bullet.h"
 
-bullet::bullet()
+hammerBullet::hammerBullet()
 {
 }
 
 
-bullet::~bullet()
+hammerBullet::~hammerBullet()
 {
 }
 
-HRESULT bullet::init(const string imageName, int bulletMax, float range)
+HRESULT hammerBullet::init(const string imageName, int bulletMax, float range)
 {
 	_imageName = imageName;
 	_bulletMax = bulletMax;
@@ -18,21 +18,21 @@ HRESULT bullet::init(const string imageName, int bulletMax, float range)
 
 	return S_OK;
 }
-void bullet::release()
+void hammerBullet::release()
 {
 
 }
-void bullet::update() 
+void hammerBullet::update()
 {
 	move();
 	frameUpdate();
 }
-void bullet::render() 
+void hammerBullet::render()
 {
 	draw();
 }
 
-void bullet::draw()
+void hammerBullet::draw()
 {
 	for (_viBullet = _vBullet.begin(); _viBullet != _vBullet.end(); ++_viBullet)
 	{
@@ -40,7 +40,7 @@ void bullet::draw()
 			_viBullet->currentFrameX, _viBullet->currentFrameY);
 	}
 }
-void bullet::setBullet(float x, float y, float angle, float speed , bool isUpAttack)
+void hammerBullet::setBullet(float x, float y, float angle, float speed , bool isUpAttack)
 {
 	if (_bulletMax < _vBullet.size()) return;
 
@@ -58,7 +58,7 @@ void bullet::setBullet(float x, float y, float angle, float speed , bool isUpAtt
 
 	_vBullet.push_back(bullet);
 }
-void bullet::move()
+void hammerBullet::move()
 {
 	for (_viBullet = _vBullet.begin(); _viBullet != _vBullet.end();)
 	{
@@ -84,7 +84,7 @@ void bullet::move()
 		else ++_viBullet;
 	}
 }
-void bullet::frameUpdate()
+void hammerBullet::frameUpdate()
 {
 	for (_viBullet = _vBullet.begin(); _viBullet != _vBullet.end(); ++_viBullet)
 	{

@@ -15,7 +15,7 @@ struct tagBullet
 	int count;							//카운트
 };
 
-class bullet : public gameNode
+class hammerBullet : public gameNode
 {
 private:
 	vector<tagBullet> _vBullet;
@@ -27,8 +27,8 @@ private:
 	float _range;
 
 public:
-	bullet();
-	~bullet();
+	hammerBullet(); 
+	~hammerBullet();
 
 	HRESULT init(const string imageName, int bulletMax, float range);
 	void release();
@@ -36,7 +36,7 @@ public:
 	void render();
 
 	void draw();
-	//뿌릴 좌표 x,y | 앵글값 | 스피드 | 공중보고쐇니? (true , false) |
+	//뿌릴 좌표 x,y | 앵글값 | 스피드 | 공중으로쐇니? (true , false) |
 	void setBullet(float x, float y, float angle, float speed , bool isUpAttack);
 	void move();
 	void frameUpdate();

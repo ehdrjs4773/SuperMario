@@ -193,15 +193,26 @@ void mario::move()
 		COLORREF color = GetPixel(IMAGEMANAGER->findImage(temp)->getMemDC(), _x - IMAGEMANAGER->findImage(_imageName + _stateKey[_state])->getFrameWidth() / 2, probeY);
 		COLORREF color2 = GetPixel(IMAGEMANAGER->findImage(temp)->getMemDC(), _x + IMAGEMANAGER->findImage(_imageName + _stateKey[_state])->getFrameWidth() / 2, probeY);
 		COLORREF color3 = GetPixel(IMAGEMANAGER->findImage(temp)->getMemDC(), _x, probeY);
-		if (!(GetRValue(color) == 255 &&
-			GetGValue(color) == 0 &&
+		// 밝고 있는 곳의 색이 하늘색이거나 노란색일때만 점프 가능
+		if ((GetRValue(color) == 0 &&
+			GetGValue(color) == 255 &&
 			GetBValue(color) == 255) ||
-			!(GetRValue(color2) == 255 &&
-				GetGValue(color2) == 0 &&
-				GetBValue(color2) == 255) ||
-			!(GetRValue(color3) == 255 &&
-				GetGValue(color3) == 0 &&
-				GetBValue(color3) == 255))
+			(GetRValue(color2) == 0 &&
+			GetGValue(color2) == 255 &&
+			GetBValue(color2) == 255) ||
+			(GetRValue(color3) == 0 &&
+			GetGValue(color3) == 255 &&
+			GetBValue(color3) == 255) ||
+
+			(GetRValue(color) == 255 &&
+			GetGValue(color) == 255 &&
+			GetBValue(color) == 0) ||
+			(GetRValue(color2) == 255 &&
+			GetGValue(color2) == 255 &&
+			GetBValue(color2) == 0) ||
+			(GetRValue(color3) == 255 &&
+			GetGValue(color3) == 255 &&
+			GetBValue(color3) == 0))
 		{
 			_jumpPower = JUMPPOWER;
 			_y -= _jumpPower;
@@ -316,12 +327,20 @@ void mario::frameUpdate()
 		break;
 
 		case STATE_ATTACK:
-			if (_frameTime % 2 == 0)
+			if (_frameTime % 10 == 0)
 			{
 				_frameX++;
 
 				if (_frameX > IMAGEMANAGER->findImage(_imageName + _stateKey[_state])->getMaxFrameX())
-					_frameX = IMAGEMANAGER->findImage(_imageName + _stateKey[_state])->getMaxFrameX();
+				{
+					_frameX = 0;
+
+					if (KEYMANAGER->isStayKeyDown(VK_LEFT) ||
+						KEYMANAGER->isStayKeyDown(VK_RIGHT))
+						this->marioStateChange(STATE_MOVE);
+					else
+						this->marioStateChange(STATE_IDLE);
+				}
 
 				_frameTime = 0;
 			}

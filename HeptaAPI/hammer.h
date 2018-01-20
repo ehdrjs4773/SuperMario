@@ -22,5 +22,8 @@ public:
 
 	virtual void keyControl();
 
+	//해머마리오 불렛 접근자
+	hammerBullet* getHammerBullet() { return _bullet; }
+
 };
 

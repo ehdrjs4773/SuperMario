@@ -41,6 +41,9 @@ public:
 	void move();
 	void frameUpdate();
 
+	//총알삭제
+	void eraseBullet(int arrNum);
+
 	//접근자
 	vector<tagBullet> getVBullet() { return _vBullet; }
 	vector<tagBullet>::iterator getVIBullet() { return _viBullet; }

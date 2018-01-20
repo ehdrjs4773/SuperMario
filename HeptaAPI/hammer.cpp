@@ -56,7 +56,7 @@ void hammer::attack()
 		if (_state != STATE_DIE &&
 			_state != STATE_ATTACK)
 		{
-			//marioStateChange(STATE_ATTACK);		
+			marioStateChange(STATE_ATTACK);		
 
 			if (!_isUpKey)
 			{

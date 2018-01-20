@@ -69,13 +69,13 @@ void hammerBullet::move()
 {
 	for (_viBullet = _vBullet.begin(); _viBullet != _vBullet.end();)
 	{
-		if (_viBullet->isUpAttack == true)
+		if (_viBullet->isUpAttack)
 		{
 			_viBullet->gravity += 0.3f;
 			_viBullet->x += cosf(_viBullet->angle) * _viBullet->speed;
 			_viBullet->y += -sinf(_viBullet->angle) * _viBullet->speed + _viBullet->gravity;
 		}
-		if (_viBullet->isUpAttack == false)
+		else
 		{
 			_viBullet->x += cosf(_viBullet->angle) * _viBullet->speed;
 			_viBullet->y += -sinf(_viBullet->angle) * _viBullet->speed;
@@ -104,4 +104,9 @@ void hammerBullet::frameUpdate()
 			_viBullet->count = 0;
 		}
 	}
+}
+
+void hammerBullet::eraseBullet(int arrNum)
+{
+	_vBullet.erase(_vBullet.begin() + arrNum);
 }

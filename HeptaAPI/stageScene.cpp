@@ -22,8 +22,6 @@ HRESULT stageScene::init(void)
 	IMAGEMANAGER->addFrameImage("박스", ".\\bmps\\box.bmp", 64, 16, 4, 1, false, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("박스충돌", ".\\bmps\\boxCollstion.bmp", 64, 16, 4, 1, false, true, RGB(255, 0, 255));
 
-
-
 	SOUNDMANAGER->addSound("배경음악", ".\\Sounds\\bgm.mp3", false, true);
 	SOUNDMANAGER->play("배경음악", 1.0F);
 
@@ -45,7 +43,7 @@ HRESULT stageScene::init(void)
 	switch (DATABASE->getCharacter())
 	{
 		case KIND_HAMMER:
-			_player = new mario;
+			_player = new hammer;
 			_player->init(_characterKey[KIND_HAMMER], 50, WINSIZEY / 2);
 		break;
 	}
@@ -72,6 +70,7 @@ void stageScene::update(void)
 	}
 
 	_player->update();
+
 	CAMERAMANAGER->cameraMove(_player->getPos().x, _player->getPos().y);
 }
 

@@ -1,6 +1,7 @@
 #pragma once
 #include "gameNode.h"
 #include "mario.h"
+#include "hammer.h"
 
 // 아이템 박스 구조체!!
 struct ItemBox
@@ -12,7 +13,6 @@ struct ItemBox
 	
 };
 
-
 class stageScene : public gameNode
 {
 private :
@@ -20,7 +20,7 @@ private :
 	int _count;
 	ItemBox _itemBox[6]; //아이템 박스
 
-	mario* _player;
+	hammer* _player;
 
 
 public:

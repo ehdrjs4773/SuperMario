@@ -16,13 +16,7 @@ public:
 	virtual void update();
 	virtual void render();
 
-	virtual void move();
 	virtual void attack();
-	virtual void falling();
-	virtual void draw();
 
-	virtual void frameUpdate();
-
-	inline POINT getPos() { return PointMake(_x, _y); }
 };
 

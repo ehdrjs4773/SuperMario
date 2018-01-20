@@ -7,6 +7,8 @@ class hammer : public mario
 private:
 	hammerBullet* _bullet;
 	
+	//윗방향키를 누르고있는지 여부
+	bool _isUpKey;
 public:
 	hammer();
 	~hammer();
@@ -17,6 +19,8 @@ public:
 	virtual void render();
 
 	virtual void attack();
+
+	virtual void keyControl();
 
 };
 

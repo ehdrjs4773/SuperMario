@@ -78,9 +78,12 @@ void stageScene::update(void)
 
 void stageScene::render(void)  
 {
-	//IMAGEMANAGER->findImage("µÞ¹è°æ")->render(getMemDC());
 	IMAGEMANAGER->findImage("¹è°æ")->render(CAMERAMANAGER->getMemDC(), 0, 0);
 
+	if (_isDebug)
+		IMAGEMANAGER->findImage("µÞ¹è°æ")->render(CAMERAMANAGER->getMemDC());
+
+	if (!_isDebug)
 	for (int i = 0; i < 6; i++)
 	{
 		_itemBox[i].itemImage->frameRender(CAMERAMANAGER->getMemDC(), _itemBox[i].rc.left, _itemBox[i].rc.top, _currentFrameX, 0);

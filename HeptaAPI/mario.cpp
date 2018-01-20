@@ -34,8 +34,8 @@ HRESULT mario::init(const string imageName, float x, float y)
 	_height = IMAGEMANAGER->findImage(imageName + _stateKey[_state])->getFrameHeight();
 	_rc = RectMakeCenter(x, y, _width, _height);
 
-	_speed = 5.0f;
-	_jumpPower = MARIO_SPEED;
+	_speed = MARIO_SPEED;
+	_jumpPower = 0.0f;
 
 	_frameX = 0;
 	_frameTime = 0;
@@ -223,9 +223,13 @@ void mario::falling()
 		for (int j = _y + IMAGEMANAGER->findImage(_imageName + _stateKey[_state])->getFrameHeight() / 2 - 1; j <= _y + IMAGEMANAGER->findImage(_imageName + _stateKey[_state])->getFrameHeight() / 2 + 1; ++j)
 		{
 			COLORREF color = GetPixel(IMAGEMANAGER->findImage(temp)->getMemDC(), i, j);
-			if (GetRValue(color) == 0 &&
+			if ((GetRValue(color) == 0 &&
 				GetGValue(color) == 255 &&
-				GetBValue(color) == 255)
+				GetBValue(color) == 255) ||
+				(GetRValue(color) == 255 &&
+				GetGValue(color) == 255 &&
+				GetBValue(color) == 0 &&
+				_jumpPower < 0))
 			{
 				_y = j - IMAGEMANAGER->findImage(_imageName + _stateKey[_state])->getFrameHeight() / 2;
 				_jumpPower = 0.0f;
@@ -276,8 +280,10 @@ void mario::attack()
 
 void mario::draw()
 {
+	if (_isDebug)
+		Rectangle(CAMERAMANAGER->getMemDC(), _rc.left, _rc.top, _rc.right, _rc.bottom);
+
 	IMAGEMANAGER->findImage(_imageName + _stateKey[_state])->frameRender(CAMERAMANAGER->getMemDC(), _rc.left, _rc.top, _frameX, _dir);
-	//Rectangle(CAMERAMANAGER->getMemDC(), _rc.left, _rc.top, _rc.right, _rc.bottom);
 }
 
 void mario::marioStateChange(MARIO_STATE state)

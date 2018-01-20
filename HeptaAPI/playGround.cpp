@@ -61,6 +61,8 @@ void playGround::update(void)
 	//if (KEYMANAGER->isStayKeyDown(VK_DOWN)) _y += 3;
 	//==============================================================//
 
+	if (KEYMANAGER->isOnceKeyDown(VK_DELETE))
+		_isDebug = !_isDebug;
 
 
 	SCENEMANAGER->update();

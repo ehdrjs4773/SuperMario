@@ -1,7 +1,7 @@
 #pragma once
 #include "gameNode.h"
 
-#define JUMPPOWER	5.0f
+#define JUMPPOWER	4.0f
 #define GRAVITY		0.1f
 #define LIMIT_X_LEFT	0
 #define LIMIT_X_RIGHT	2815

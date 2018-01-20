@@ -70,6 +70,12 @@
     <Filter Include="playGround\bullet">
       <UniqueIdentifier>{f5502f37-b792-4d09-8f23-4276c3729efc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\enemy">
+      <UniqueIdentifier>{7c8508bc-4e30-4aac-a5a9-5a85b229364c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\enemy\enemy_kind">
+      <UniqueIdentifier>{04fec2f6-2280-407c-9cdc-b087e796df06}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -171,6 +177,24 @@
     <ClInclude Include="bullet.h">
       <Filter>playGround\bullet</Filter>
     </ClInclude>
+    <ClInclude Include="enemy.h">
+      <Filter>playGround\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="enemyManager.h">
+      <Filter>playGround\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="flower.h">
+      <Filter>playGround\enemy\enemy_kind</Filter>
+    </ClInclude>
+    <ClInclude Include="cuba.h">
+      <Filter>playGround\enemy\enemy_kind</Filter>
+    </ClInclude>
+    <ClInclude Include="killer.h">
+      <Filter>playGround\enemy\enemy_kind</Filter>
+    </ClInclude>
+    <ClInclude Include="turtle.h">
+      <Filter>playGround\enemy\enemy_kind</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -259,6 +283,24 @@
     </ClCompile>
     <ClCompile Include="bullet.cpp">
       <Filter>playGround\bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="enemy.cpp">
+      <Filter>playGround\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="enemyManager.cpp">
+      <Filter>playGround\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="flower.cpp">
+      <Filter>playGround\enemy\enemy_kind</Filter>
+    </ClCompile>
+    <ClCompile Include="cuba.cpp">
+      <Filter>playGround\enemy\enemy_kind</Filter>
+    </ClCompile>
+    <ClCompile Include="killer.cpp">
+      <Filter>playGround\enemy\enemy_kind</Filter>
+    </ClCompile>
+    <ClCompile Include="turtle.cpp">
+      <Filter>playGround\enemy\enemy_kind</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

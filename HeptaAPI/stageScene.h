@@ -18,7 +18,7 @@ class stageScene : public gameNode
 private :
 	int _currentFrameX;
 	int _count;
-	ItemBox _itemBox[6]; //아이템 박스
+	ItemBox _itemBox[8]; //아이템 박스
 
 	hammer* _player;
 

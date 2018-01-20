@@ -25,12 +25,14 @@ HRESULT stageScene::init(void)
 	SOUNDMANAGER->addSound("πË∞Ê¿Ωæ«", ".\\Sounds\\bgm.mp3", false, true);
 	SOUNDMANAGER->play("πË∞Ê¿Ωæ«", 1.0F);
 
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < 8; i++)
 	{
 		_itemBox[i].itemImage = IMAGEMANAGER->findImage("π⁄Ω∫");
 		_itemBox[i].Collsion = false;
 		_itemBox[0].rc = RectMakeCenter(184, 360, 16, 16);
+		_itemBox[6].rc = RectMakeCenter(200, 360, 16, 16);
 		_itemBox[1].rc = RectMakeCenter(232, 312, 16, 16);
+		_itemBox[7].rc = RectMakeCenter(248, 312, 16, 16);
 		_itemBox[2].rc = RectMakeCenter(424, 328, 16, 16);
 		_itemBox[3].rc = RectMakeCenter(712, 360, 16, 16);
 		_itemBox[4].rc = RectMakeCenter(664, 392, 16, 16);
@@ -83,7 +85,7 @@ void stageScene::render(void)
 		IMAGEMANAGER->findImage("µﬁπË∞Ê")->render(CAMERAMANAGER->getMemDC());
 
 	if (!_isDebug)
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < 8; i++)
 	{
 		_itemBox[i].itemImage->frameRender(CAMERAMANAGER->getMemDC(), _itemBox[i].rc.left, _itemBox[i].rc.top, _currentFrameX, 0);
 	}

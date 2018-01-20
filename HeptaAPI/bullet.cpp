@@ -36,7 +36,7 @@ void hammerBullet::draw()
 {
 	for (_viBullet = _vBullet.begin(); _viBullet != _vBullet.end(); ++_viBullet)
 	{
-		_viBullet->imageName->frameRender(getMemDC(), _viBullet->x, _viBullet->y,
+		_viBullet->imageName->frameRender(CAMERAMANAGER->getMemDC(), _viBullet->x, _viBullet->y,
 			_viBullet->currentFrameX, _viBullet->currentFrameY);
 	}
 }
@@ -52,7 +52,7 @@ void hammerBullet::setBullet(float x, float y, float angle, float speed , bool i
 	bullet.angle = angle;
 	bullet.speed = speed;
 	bullet.gravity = 0.5f;
-	bullet.isUpAttack = isUpAttack;
+	bullet.isUpAttack = (bool)isUpAttack;
 	bullet.currentFrameX = bullet.currentFrameY = bullet.count = 0;
 	bullet.rc = RectMakeCenter(bullet.x, bullet.y, bullet.imageName->getFrameWidth(), bullet.imageName->getFrameHeight());
 
@@ -64,13 +64,13 @@ void hammerBullet::move()
 	{
 		if (_viBullet->isUpAttack == true)
 		{
-			_viBullet->x = cosf(_viBullet->angle) * _viBullet->speed;
-			_viBullet->y = -sinf(_viBullet->angle) * _viBullet->speed - _viBullet->gravity;
+			_viBullet->x += cosf(_viBullet->angle) * _viBullet->speed;
+			_viBullet->y += -sinf(_viBullet->angle) * _viBullet->speed - _viBullet->gravity;
 		}
 		if (_viBullet->isUpAttack == false)
 		{
-			_viBullet->x = cosf(_viBullet->angle) * _viBullet->speed;
-			_viBullet->y = -sinf(_viBullet->angle) * _viBullet->speed;
+			_viBullet->x += cosf(_viBullet->angle) * _viBullet->speed;
+			_viBullet->y += -sinf(_viBullet->angle) * _viBullet->speed;
 		}
 
 		_viBullet->rc = RectMakeCenter(_viBullet->x, _viBullet->y,

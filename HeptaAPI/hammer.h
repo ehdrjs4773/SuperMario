@@ -5,7 +5,7 @@
 class hammer : public mario
 {
 private:
-	bullet* _bullet;
+	hammerBullet* _bullet;
 	
 public:
 	hammer();
@@ -16,10 +16,13 @@ public:
 	virtual void update();
 	virtual void render();
 
-	virtual void keyControl();
 	virtual void move();
+	virtual void attack();
+	virtual void falling();
 	virtual void draw();
 
 	virtual void frameUpdate();
+
+	inline POINT getPos() { return PointMake(_x, _y); }
 };
 

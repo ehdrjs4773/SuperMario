@@ -22,7 +22,7 @@ HRESULT stageScene::init(void)
 	IMAGEMANAGER->addFrameImage("박스", ".\\bmps\\box.bmp", 64, 16, 4, 1, false, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("박스충돌", ".\\bmps\\boxCollstion.bmp", 64, 16, 4, 1, false, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("코인", ".\\bmps\\item\\item_coin.bmp", 56, 16, 4, 1, false, true, RGB(255, 0, 255));
-
+	IMAGEMANAGER->addImage("finalImage", ".\\bmps\\finalstar.bmp", 26, 26, false, true, RGB(255, 0, 255));
 
 
 	SOUNDMANAGER->addSound("배경음악", ".\\Sounds\\bgm.mp3", true, true);
@@ -139,6 +139,7 @@ void stageScene::render(void)
 	if (!_isDebug)
 	for (int i = 0; i < 8; i++)
 	{
+		IMAGEMANAGER->findImage("finalImage")->render(CAMERAMANAGER->getMemDC(), _finishRect.left, _finishRect.top);
 		_itemBox[i].itemImage->frameRender(CAMERAMANAGER->getMemDC(), _itemBox[i].rc.left, _itemBox[i].rc.top, _currentFrameX, 0);
 	}
 

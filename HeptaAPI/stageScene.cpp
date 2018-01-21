@@ -22,9 +22,9 @@ HRESULT stageScene::init(void)
 	IMAGEMANAGER->addFrameImage("박스", ".\\bmps\\box.bmp", 64, 16, 4, 1, false, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("박스충돌", ".\\bmps\\boxCollstion.bmp", 64, 16, 4, 1, false, true, RGB(255, 0, 255));
 
-	SOUNDMANAGER->addSound("배경음악", ".\\Sounds\\bgm.mp3", false, true);
+	SOUNDMANAGER->addSound("배경음악", ".\\Sounds\\bgm.mp3", true, true);
 	SOUNDMANAGER->play("배경음악", 1.0F);
-
+	SOUNDMANAGER->addSound("박스쳤다", ".\\Sounds\\boxcollstion.mp3", false, false);
 	for (int i = 0; i < 8; i++)
 	{
 		_itemBox[i].itemImage = IMAGEMANAGER->findImage("박스");
@@ -37,7 +37,7 @@ HRESULT stageScene::init(void)
 		_itemBox[3].rc = RectMakeCenter(712, 360, 16, 16);
 		_itemBox[4].rc = RectMakeCenter(664, 392, 16, 16);
 		_itemBox[5].rc = RectMakeCenter(1480, 376, 16, 16);
-		
+
 	}
 	_currentFrameX = 0;
 
@@ -77,8 +77,23 @@ void stageScene::update(void)
 	}
 
 	_player->update();
-
+	
 	CAMERAMANAGER->cameraMove(_player->getPos().x, _player->getPos().y);
+
+	RECT temp;
+	for (int i = 0; i < 8; i++)
+	{
+		if (IntersectRect(&temp, &_player->getRC(), &_itemBox[i].rc))
+		{
+			if (_itemBox[i].Collsion) return;
+
+			_itemBox[i].Collsion = true;
+			SOUNDMANAGER->play("박스쳤다", 1.0f);
+			_itemBox[i].itemImage = IMAGEMANAGER->findImage("박스충돌");
+			break;
+		}
+	}
+
 }
 
 

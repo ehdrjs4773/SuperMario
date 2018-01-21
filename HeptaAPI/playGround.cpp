@@ -30,7 +30,7 @@ HRESULT playGround::init()
 
 	//=================스테이지 씬 초기화 ==================================//
 	SCENEMANAGER->addScene("stageScene", new stageScene);
-	CAMERAMANAGER->init(2815, 432, WINSIZEX, WINSIZEY, _x, _y, 3.0f);
+	CAMERAMANAGER->init(2815, 432, WINSIZEX, WINSIZEY, _x, _y, 2.0f);
 	//==============위 에꺼랑 마찬가지============ 내꺼임(동건) =============//
 
 

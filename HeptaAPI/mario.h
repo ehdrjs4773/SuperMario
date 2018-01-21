@@ -82,5 +82,6 @@ public:
 	virtual void frameUpdate();
 
 	inline POINT getPos() { return PointMake(_x, _y); }
+	inline RECT getRC() { return _rc; }
 };
 

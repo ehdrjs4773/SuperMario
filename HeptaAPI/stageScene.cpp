@@ -70,12 +70,18 @@ HRESULT stageScene::init(void)
 		case KIND_POMPOKO:
 			_player = new pompoko;
 			_player->init(_characterKey[KIND_POMPOKO], 50, WINSIZEY / 2);
-			break;
+		break;
 
+		case KIND_FROG:
+			_player = new frog;
+			_player->init(_characterKey[KIND_FROG], 50, WINSIZEY / 2);
+		break;
 	}
 
 	_em = new enemyManager;
 	_em->init();
+
+	_em->setPlayerMemoryAddressLink(_player);
 
 	return S_OK;
 }

@@ -15,14 +15,47 @@ mario::~mario()
 HRESULT mario::init(const string imageName, float x, float y)
 {
 	// 마리오가 사용할 이미지 등록
-	string path = ".\\bmps\\" + imageName + "\\" + imageName + _stateKey[STATE_IDLE] + ".bmp";
-	IMAGEMANAGER->addFrameImage(imageName + _stateKey[STATE_IDLE], path.c_str(), 16, 28 * 2, 1, 2, false, true, MAGENTA);
-	path = ".\\bmps\\" + imageName + "\\" + imageName + _stateKey[STATE_MOVE] + ".bmp";
-	IMAGEMANAGER->addFrameImage(imageName + _stateKey[STATE_MOVE], path.c_str(), 16 * 3, 28 * 2, 3, 2, false, true, MAGENTA);
-	path = ".\\bmps\\" + imageName + "\\" + imageName + _stateKey[STATE_JUMP] + ".bmp";
-	IMAGEMANAGER->addFrameImage(imageName + _stateKey[STATE_JUMP], path.c_str(), 16, 27 * 2, 1, 2, false, true, MAGENTA);
-	path = ".\\bmps\\" + imageName + "\\" + imageName + _stateKey[STATE_ATTACK] + ".bmp";
-	IMAGEMANAGER->addFrameImage(imageName + _stateKey[STATE_ATTACK], path.c_str(), 16 * 2, 28 * 2, 2, 2, false, true, MAGENTA);
+	// 현재 고른 캐릭터에 따라 다르게 등록함
+
+	switch (DATABASE->getCharacter())
+	{
+		case KIND_POMPOKO:
+			IMAGEMANAGER->addFrameImage("pompoko_idle", ".\\bmps\\pompoko\\pompoko_idle.bmp", POMPOKO_IDLE_WIDTH, POMPOKO_IDLE_HEIGHT * 2, 1, 2, false, true, MAGENTA);
+			IMAGEMANAGER->addFrameImage("pompoko_move", ".\\bmps\\pompoko\\pompoko_move.bmp", POMPOKO_MOVE_WIDTH * 3, POMPOKO_MOVE_HEIGHT * 2, 3, 2, false, true, MAGENTA);
+			IMAGEMANAGER->addFrameImage("pompoko_jump", ".\\bmps\\pompoko\\pompoko_jump.bmp", POMPOKO_JUMP_WIDTH, POMPOKO_JUMP_HEIGHT * 2, 1, 2, false, true, MAGENTA);
+			IMAGEMANAGER->addFrameImage("pompoko_attack", ".\\bmps\\pompoko\\pompoko_attack.bmp", POMPOKO_ATTACK_WIDTH * 3, POMPOKO_ATTACK_HEIGHT * 2, 3, 2, false, true, MAGENTA);
+		break;
+		
+		case KIND_FIRE:
+			IMAGEMANAGER->addFrameImage("fire_idle", ".\\bmps\\fire\\fire_idle.bmp", FIRE_IDLE_WIDTH, FIRE_IDLE_HEIGHT * 2, 1, 2, false, true, MAGENTA);
+			IMAGEMANAGER->addFrameImage("fire_move", ".\\bmps\\fire\\fire_move.bmp", FIRE_MOVE_WIDTH * 3, FIRE_MOVE_HEIGHT * 2, 3, 2, false, true, MAGENTA);
+			IMAGEMANAGER->addFrameImage("fire_jump", ".\\bmps\\fire\\fire_jump.bmp", FIRE_JUMP_WIDTH, FIRE_JUMP_HEIGHT * 2, 1, 2, false, true, MAGENTA);
+			IMAGEMANAGER->addFrameImage("fire_attack", ".\\bmps\\fire\\fire_attack.bmp", FIRE_ATTACK_WIDTH * 2, FIRE_ATTACK_HEIGHT * 2, 2, 2, false, true, MAGENTA);
+		break;
+		
+		case KIND_HAMMER:
+			IMAGEMANAGER->addFrameImage("hammer_idle", ".\\bmps\\hammer\\hammer_idle.bmp", HAMMER_IDLE_WIDTH, HAMMER_IDLE_HEIGHT * 2, 1, 2, false, true, MAGENTA);
+			IMAGEMANAGER->addFrameImage("hammer_move", ".\\bmps\\hammer\\hammer_move.bmp", HAMMER_MOVE_WIDTH * 3, HAMMER_MOVE_HEIGHT * 2, 3, 2, false, true, MAGENTA);
+			IMAGEMANAGER->addFrameImage("hammer_jump", ".\\bmps\\hammer\\hammer_jump.bmp", HAMMER_JUMP_WIDTH, HAMMER_JUMP_HEIGHT * 2, 1, 2, false, true, MAGENTA);
+			IMAGEMANAGER->addFrameImage("hammer_attack", ".\\bmps\\hammer\\hammer_attack.bmp", HAMMER_ATTACK_WIDTH * 2, HAMMER_ATTACK_HEIGHT * 2, 2, 2, false, true, MAGENTA);
+		break;
+		
+		case KIND_FROG:
+			IMAGEMANAGER->addFrameImage("frog_idle", ".\\bmps\\frog\\frog_idle.bmp", FROG_IDLE_WIDTH, FROG_IDLE_HEIGHT * 2, 1, 2, false, true, MAGENTA);
+			IMAGEMANAGER->addFrameImage("frog_move", ".\\bmps\\frog\\frog_move.bmp", FROG_MOVE_WIDTH * 3, FROG_MOVE_HEIGHT * 2, 3, 2, false, true, MAGENTA);
+			IMAGEMANAGER->addFrameImage("frog_jump", ".\\bmps\\frog\\frog_jump.bmp", FROG_JUMP_WIDTH, FROG_JUMP_HEIGHT * 2, 1, 2, false, true, MAGENTA);
+			//IMAGEMANAGER->addFrameImage("hammer_attack", ".\\bmps\\hammer\\hammer_attack.bmp", HAMMER_ATTACK_WIDTH * 2, HAMMER_ATTACK_HEIGHT * 2, 2, 2, false, true, MAGENTA);
+		break;
+	}
+
+	//string path = ".\\bmps\\" + imageName + "\\" + imageName + _stateKey[STATE_IDLE] + ".bmp";
+	//IMAGEMANAGER->addFrameImage(imageName + _stateKey[STATE_IDLE], path.c_str(), 16, 28 * 2, 1, 2, false, true, MAGENTA);
+	//path = ".\\bmps\\" + imageName + "\\" + imageName + _stateKey[STATE_MOVE] + ".bmp";
+	//IMAGEMANAGER->addFrameImage(imageName + _stateKey[STATE_MOVE], path.c_str(), 16 * 3, 28 * 2, 3, 2, false, true, MAGENTA);
+	//path = ".\\bmps\\" + imageName + "\\" + imageName + _stateKey[STATE_JUMP] + ".bmp";
+	//IMAGEMANAGER->addFrameImage(imageName + _stateKey[STATE_JUMP], path.c_str(), 16, 27 * 2, 1, 2, false, true, MAGENTA);
+	//path = ".\\bmps\\" + imageName + "\\" + imageName + _stateKey[STATE_ATTACK] + ".bmp";
+	//IMAGEMANAGER->addFrameImage(imageName + _stateKey[STATE_ATTACK], path.c_str(), 16 * 2, 28 * 2, 2, 2, false, true, MAGENTA);
 
 	_imageName = imageName;
 	_x = x;

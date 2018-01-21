@@ -7,6 +7,40 @@
 #define LIMIT_X_RIGHT	2815
 #define MARIO_SPEED		2.0f
 
+#define POMPOKO_IDLE_WIDTH			21
+#define POMPOKO_IDLE_HEIGHT			28
+#define POMPOKO_MOVE_WIDTH			23
+#define POMPOKO_MOVE_HEIGHT			28
+#define POMPOKO_JUMP_WIDTH			23
+#define POMPOKO_JUMP_HEIGHT			27
+#define POMPOKO_ATTACK_WIDTH		24
+#define POMPOKO_ATTACK_HEIGHT		28
+
+#define FIRE_IDLE_WIDTH				16
+#define FIRE_IDLE_HEIGHT			28
+#define FIRE_MOVE_WIDTH				16
+#define FIRE_MOVE_HEIGHT			28
+#define FIRE_JUMP_WIDTH				16
+#define FIRE_JUMP_HEIGHT			26
+#define FIRE_ATTACK_WIDTH			16
+#define FIRE_ATTACK_HEIGHT			28
+
+#define HAMMER_IDLE_WIDTH			16
+#define HAMMER_IDLE_HEIGHT			28
+#define HAMMER_MOVE_WIDTH			16
+#define HAMMER_MOVE_HEIGHT			28
+#define HAMMER_JUMP_WIDTH			16
+#define HAMMER_JUMP_HEIGHT			27
+#define HAMMER_ATTACK_WIDTH			16
+#define HAMMER_ATTACK_HEIGHT		28
+
+#define FROG_IDLE_WIDTH				20
+#define FROG_IDLE_HEIGHT			24
+#define FROG_MOVE_WIDTH				20
+#define FROG_MOVE_HEIGHT			29
+#define FROG_JUMP_WIDTH				19
+#define FROG_JUMP_HEIGHT			29
+
 enum MARIO_STATE
 {
 	STATE_IDLE,
@@ -22,6 +56,7 @@ enum MARIO_KIND
 	KIND_POMPOKO,
 	KIND_FIRE,
 	KIND_HAMMER,
+	KIND_FROG,
 	KIND_END
 };
 
@@ -36,7 +71,8 @@ static string _characterKey[KIND_END] =
 {
 	"pompoko",
 	"fire",
-	"hammer"
+	"hammer",
+	"frog"
 };
 
 static string _stateKey[STATE_END] = 

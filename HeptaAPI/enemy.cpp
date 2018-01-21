@@ -23,9 +23,6 @@ HRESULT enemy::init(const char* imageName, POINT position)
 	_directionXChange = false;
 	_directionYChange = false;
 
-	_player = new hammer;
-	_player->init(_characterKey[KIND_HAMMER], 50, WINSIZEY / 2);
-
 	_directionXRc = RectMake(_enemy.left - 40, _enemy.top - 40, 100, 80);
 	_directionYRc = RectMake(_enemy.left, _enemy.top - 35, 18, 35);
 

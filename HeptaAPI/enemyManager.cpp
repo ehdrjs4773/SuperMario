@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "enemyManager.h"
+#include "mario.h"
 
 enemyManager::enemyManager()
 {
@@ -13,9 +14,6 @@ enemyManager::~enemyManager()
 
 HRESULT enemyManager::init() 
 {
-	_player = new hammer;
-	_player->init(_characterKey[KIND_HAMMER], 50, WINSIZEY / 2);
-
 	_respawn = new respawn;
 	_respawn->init();
 

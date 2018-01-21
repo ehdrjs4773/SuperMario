@@ -10,7 +10,7 @@ class selectScene : public gameNode
 {
 private:
 	button* _selectButton;
-	button* _selectBackButton[3];
+	button* _selectBackButton[KIND_END];
 	static int _currentClickedButton;
 	static int _selectButtonX, _selectButtonY;
 	static bool _isClicked;

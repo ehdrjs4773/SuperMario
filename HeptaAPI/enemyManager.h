@@ -1,8 +1,6 @@
 #pragma once
 #include "gameNode.h"
 #include "respawn.h"
-#include "mario.h"
-#include "hammer.h"
 #include <vector>
 
 class mario;
@@ -10,7 +8,7 @@ class mario;
 class enemyManager : public gameNode
 {
 private:
-	hammer* _player;
+	mario* _player;
 	respawn* _respawn;
 	RECT _cameraRc;
 
@@ -23,5 +21,6 @@ public:
 	void update();
 	void render();
 
+	inline void setPlayerMemoryAddressLink(mario* player) { _player = player; }
 };
 

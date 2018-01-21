@@ -4,6 +4,7 @@
 #include "hammer.h"
 #include "fire.h"
 #include "pompoko.h"
+#include "frog.h"
 #include "item.h"
 #include "enemyManager.h"
 
@@ -14,7 +15,6 @@ struct ItemBox
 	RECT rc;		 // 아이템 박스 렉트
 	bool Collsion;   // 아이템 박스를 충돌 했는지?
 	int itemNum;    // 아이템 치면 뭐 나올지?
-	
 };
 
 class stageScene : public gameNode

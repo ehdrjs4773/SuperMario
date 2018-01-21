@@ -1,7 +1,5 @@
 #pragma once
 #include "gameNode.h"
-#include "mario.h"
-#include "hammer.h"
 
 enum Phase		//페이즈에 따라 에너미의 무브를 바꾸기위해
 {
@@ -12,8 +10,6 @@ enum Phase		//페이즈에 따라 에너미의 무브를 바꾸기위해
 class enemy : public gameNode
 {
 private:
-	hammer * _player;
-
 	image * _imageName;
 	RECT _enemy;
 

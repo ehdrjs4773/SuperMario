@@ -62,7 +62,7 @@ void soundManager::release()
 
 void soundManager::update()	
 {
-
+	_system->update();
 }
 
 

@@ -20,7 +20,7 @@ HRESULT mario::init(const string imageName, float x, float y)
 	path = ".\\bmps\\" + imageName + "\\" + imageName + _stateKey[STATE_MOVE] + ".bmp";
 	IMAGEMANAGER->addFrameImage(imageName + _stateKey[STATE_MOVE], path.c_str(), 16 * 3, 28 * 2, 3, 2, false, true, MAGENTA);
 	path = ".\\bmps\\" + imageName + "\\" + imageName + _stateKey[STATE_JUMP] + ".bmp";
-	IMAGEMANAGER->addFrameImage(imageName + _stateKey[STATE_JUMP], path.c_str(), 16 * 3, 27 * 2, 3, 2, false, true, MAGENTA);
+	IMAGEMANAGER->addFrameImage(imageName + _stateKey[STATE_JUMP], path.c_str(), 16, 27 * 2, 1, 2, false, true, MAGENTA);
 	path = ".\\bmps\\" + imageName + "\\" + imageName + _stateKey[STATE_ATTACK] + ".bmp";
 	IMAGEMANAGER->addFrameImage(imageName + _stateKey[STATE_ATTACK], path.c_str(), 16 * 2, 28 * 2, 2, 2, false, true, MAGENTA);
 
@@ -80,14 +80,14 @@ void mario::move()
 	{
 		switch (_state)
 		{
-		case STATE_MOVE:
-			if (!KEYMANAGER->isStayKeyDown(VK_RIGHT))
-			{
-				_dir = DIR_LEFT;
-				_x -= _speed;
-			}
-			else
-				this->marioStateChange(STATE_IDLE);
+			case STATE_MOVE: case STATE_JUMP: case STATE_ATTACK:
+				if (!KEYMANAGER->isStayKeyDown(VK_RIGHT))
+				{
+					_dir = DIR_LEFT;
+					_x -= _speed;
+				}
+				else
+					this->marioStateChange(STATE_IDLE);
 			break;
 		}
 
@@ -139,14 +139,14 @@ void mario::move()
 	{
 		switch (_state)
 		{
-		case STATE_MOVE:
-			if (!KEYMANAGER->isStayKeyDown(VK_LEFT))
-			{
-				_dir = DIR_RIGHT;
-				_x += _speed;
-			}
-			else
-				this->marioStateChange(STATE_IDLE);
+			case STATE_MOVE: case STATE_JUMP: case STATE_ATTACK:
+				if (!KEYMANAGER->isStayKeyDown(VK_LEFT))
+				{
+					_dir = DIR_RIGHT;
+					_x += _speed;
+				}
+				else
+					this->marioStateChange(STATE_IDLE);
 			break;
 		}
 
@@ -214,6 +214,7 @@ void mario::move()
 			GetGValue(color3) == 255 &&
 			GetBValue(color3) == 0))
 		{
+			this->marioStateChange(STATE_JUMP);
 			_jumpPower = JUMPPOWER;
 			_y -= _jumpPower;
 		}
@@ -244,6 +245,15 @@ void mario::falling()
 			{
 				_y = j - IMAGEMANAGER->findImage(_imageName + _stateKey[_state])->getFrameHeight() / 2;
 				_jumpPower = 0.0f;
+
+				if (_state == STATE_JUMP)
+				{
+					if (KEYMANAGER->isStayKeyDown(VK_LEFT) ||
+						KEYMANAGER->isStayKeyDown(VK_RIGHT))
+						this->marioStateChange(STATE_MOVE);
+					else
+						this->marioStateChange(STATE_IDLE);
+				}
 				break;
 			}
 			if (GetRValue(color) == 255 &&

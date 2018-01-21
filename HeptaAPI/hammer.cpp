@@ -58,17 +58,6 @@ void hammer::attack()
 		{
 			marioStateChange(STATE_ATTACK);		
 
-			if (!_isUpKey)
-			{
-				if (_dir == DIR_RIGHT)
-				{
-					_bullet->setBullet(getPos().x + 3, getPos().y - 5, 0.0f, 5.0f, false);
-				}
-				if (_dir == DIR_LEFT)
-				{
-					_bullet->setBullet(getPos().x - 15, getPos().y - 5, PI, 5.0f, false);
-				}
-			}
 			if (_isUpKey)
 			{
 				if (_dir == DIR_RIGHT)
@@ -78,6 +67,17 @@ void hammer::attack()
 				if (_dir == DIR_LEFT)
 				{
 					_bullet->setBullet(getPos().x - 15, getPos().y - 7, PI / 2 + 0.2f, 5.0f, true);
+				}
+			}
+			if (!_isUpKey)
+			{
+				if (_dir == DIR_RIGHT)
+				{
+					_bullet->setBullet(getPos().x + 3, getPos().y - 5, 0.0f, 5.0f, false);
+				}
+				if (_dir == DIR_LEFT)
+				{
+					_bullet->setBullet(getPos().x - 15, getPos().y - 5, PI, 5.0f, false);
 				}
 			}
 		}

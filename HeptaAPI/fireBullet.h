@@ -24,7 +24,7 @@ public:
 	void update();
 	void render();
 
-	void fire(float x, float y);
+	void fire(float x, float y, float angle);
 
 	void move();
 

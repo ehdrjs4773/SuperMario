@@ -14,7 +14,6 @@ public:
 	 void update();
 	 void render();
 
-	 void move();
 	 void attack();
 	 void draw();
 

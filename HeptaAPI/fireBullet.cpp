@@ -53,7 +53,7 @@ void MF::render()
 }
 
 
-void MF::fire(float x, float y)
+void MF::fire(float x, float y, float angle)
 {
 	//최대갯수보다 더 생성될려고 하면
 	if (_bulletMax < _vBullet.size()) return;
@@ -65,7 +65,7 @@ void MF::fire(float x, float y)
 	bullet.speed = 0.1f;
 	bullet.x = bullet.fireX = x;
 	bullet.y = bullet.fireY = y;
-	bullet.angle = 0.0f;
+	bullet.angle = angle;
 	bullet.jumpPower = 0.0f;
 	bullet.rc = RectMakeCenter(bullet.x, bullet.y,
 		bullet.imageName->getFrameWidth(),

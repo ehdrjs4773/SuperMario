@@ -86,10 +86,12 @@ void MF::move()
 		sprintf(temp, "뒷배경");
 		int probeY = _viBullet->y +_viBullet->imageName->getFrameHeight() / 2 - 1;
 
-				COLORREF color = GetPixel(IMAGEMANAGER->findImage(temp)->getMemDC(), _viBullet->imageName->getFrameWidth(), probeY);
-				if (GetRValue(color) == 0 &&
+				COLORREF color = GetPixel(IMAGEMANAGER->findImage(temp)->getMemDC(), _viBullet->x+_viBullet->imageName->getFrameWidth(), probeY);
+				if ((GetRValue(color) == 0 &&
 					GetGValue(color) == 255 &&
-					GetBValue(color) == 255) //지면 pixel 충돌시
+					GetBValue(color) == 255)|| (GetRValue(color) == 255 &&
+						GetGValue(color) == 255 &&
+						GetBValue(color) == 0))//지면 pixel 충돌시
 				{
 					_viBullet->jumpPower = 1.0f;
 				}

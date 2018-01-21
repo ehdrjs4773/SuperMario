@@ -21,10 +21,16 @@ HRESULT stageScene::init(void)
 	IMAGEMANAGER->addImage("뒷배경", ".\\bmps\\stageOneBackGround.bmp", 2815, 432, false, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("박스", ".\\bmps\\box.bmp", 64, 16, 4, 1, false, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("박스충돌", ".\\bmps\\boxCollstion.bmp", 64, 16, 4, 1, false, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("코인", ".\\bmps\\item\\item_coin.bmp", 56, 16, 4, 1, false, true, RGB(255, 0, 255));
+
+
 
 	SOUNDMANAGER->addSound("배경음악", ".\\Sounds\\bgm.mp3", true, true);
 	SOUNDMANAGER->play("배경음악", 1.0F);
 	SOUNDMANAGER->addSound("박스쳤다", ".\\Sounds\\boxcollstion.mp3", false, false);
+
+
+
 	for (int i = 0; i < 8; i++)
 	{
 		_itemBox[i].itemImage = IMAGEMANAGER->findImage("박스");
@@ -40,6 +46,9 @@ HRESULT stageScene::init(void)
 
 	}
 	_currentFrameX = 0;
+
+	_item = new item;
+	_item->init();
 
 	// 테스트용 플레이어
 	switch (DATABASE->getCharacter())
@@ -83,7 +92,7 @@ void stageScene::update(void)
 	}
 
 	_player->update();
-	
+	_item->update();
 	CAMERAMANAGER->cameraMove(_player->getPos().x, _player->getPos().y);
 
 	RECT temp;
@@ -91,14 +100,22 @@ void stageScene::update(void)
 	{
 		if (IntersectRect(&temp, &_player->getRC(), &_itemBox[i].rc))
 		{
-			if (_itemBox[i].Collsion) return;
+			if (_player->getPos().y > _itemBox[i].rc.bottom &&
+				_player->getPos().x > _itemBox[i].rc.left &&
+				_player->getPos().x < _itemBox[i].rc.right)
+			{
+				if (_itemBox[i].Collsion) return;
 
-			_itemBox[i].Collsion = true;
-			SOUNDMANAGER->play("박스쳤다", 1.0f);
-			_itemBox[i].itemImage = IMAGEMANAGER->findImage("박스충돌");
-			break;
+				_itemBox[i].Collsion = true;
+				SOUNDMANAGER->play("박스쳤다", 1.0f);
+				_itemBox[i].itemImage = IMAGEMANAGER->findImage("박스충돌");
+				_item->setItem(_itemBox[i].rc.left, _itemBox[i].rc.top, ITME_COIN, "코인");
+				break;
+			}
 		}
 	}
+	
+	
 
 }
 
@@ -106,6 +123,8 @@ void stageScene::update(void)
 void stageScene::render(void)  
 {
 	IMAGEMANAGER->findImage("배경")->render(CAMERAMANAGER->getMemDC(), 0, 0);
+
+	_item->render();
 
 	if (_isDebug)
 		IMAGEMANAGER->findImage("뒷배경")->render(CAMERAMANAGER->getMemDC());

@@ -34,13 +34,13 @@ public:
 	item();
 	~item();
 
-	virtual HRESULT init(const string imageName);
+	virtual HRESULT init();
 	virtual void release();
 	virtual void update();
 	virtual void render();
 
 	virtual void draw();
-	virtual void setItem(float x , float y , ITEM_KIND itme_kind);
+	virtual void setItem(float x , float y , ITEM_KIND itme_kind, const string imageName);
 	virtual void itemMove();
 	virtual void frameUpdate();
 	virtual void eraseItem(int arrNum);

@@ -12,9 +12,9 @@ item::~item()
 {
 }
 
-HRESULT item::init(const string imageName)
+HRESULT item::init()
 {
-	_imageName = imageName;
+
 
 	return S_OK;
 }
@@ -43,12 +43,12 @@ void item::draw()
 	}
 }
 
-void item::setItem(float x, float y, ITEM_KIND itme_kind)
+void item::setItem(float x, float y, ITEM_KIND itme_kind, const string imageName)
 {
 	tagItem item;
 	ZeroMemory(&item, sizeof(item));
 	item.item_kind = (ITEM_KIND)itme_kind;
-	item.imageName = IMAGEMANAGER->findImage(_imageName);
+	item.imageName = IMAGEMANAGER->findImage(imageName);
 	item.x = x;
 	item.y = y;
 	item.currentFrameX = item.currentFrameY = item.count = 0;

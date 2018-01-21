@@ -4,6 +4,7 @@
 #include "hammer.h"
 #include "fire.h"
 #include "pompoko.h"
+#include "item.h"
 
 // 아이템 박스 구조체!!
 struct ItemBox
@@ -22,6 +23,7 @@ private :
 	int _count;
 	ItemBox _itemBox[8]; //아이템 박스
 
+	item* _item;
 	mario* _player;
 
 

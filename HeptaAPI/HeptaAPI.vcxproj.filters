@@ -76,6 +76,9 @@
     <Filter Include="playGround\enemy\enemy_kind">
       <UniqueIdentifier>{04fec2f6-2280-407c-9cdc-b087e796df06}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\item">
+      <UniqueIdentifier>{d06fc565-d3a3-448c-87b7-a65c15f2bbb9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -204,6 +207,15 @@
     <ClInclude Include="tagBullet.h">
       <Filter>playGround\bullet</Filter>
     </ClInclude>
+    <ClInclude Include="pompoko.h">
+      <Filter>playGround\mario\mario_kind</Filter>
+    </ClInclude>
+    <ClInclude Include="item.h">
+      <Filter>playGround\item</Filter>
+    </ClInclude>
+    <ClInclude Include="frog.h">
+      <Filter>playGround\mario\mario_kind</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -316,6 +328,15 @@
     </ClCompile>
     <ClCompile Include="fireBullet.cpp">
       <Filter>playGround\bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="pompoko.cpp">
+      <Filter>playGround\mario\mario_kind</Filter>
+    </ClCompile>
+    <ClCompile Include="item.cpp">
+      <Filter>playGround\item</Filter>
+    </ClCompile>
+    <ClCompile Include="frog.cpp">
+      <Filter>playGround\mario\mario_kind</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

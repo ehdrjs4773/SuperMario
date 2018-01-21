@@ -137,6 +137,7 @@
   <ItemGroup>
     <ClCompile Include="action.cpp" />
     <ClCompile Include="animation.cpp" />
+    <ClCompile Include="frog.cpp" />
     <ClCompile Include="hammerBullet.cpp" />
     <ClCompile Include="fireBullet.cpp" />
     <ClCompile Include="button.cpp" />
@@ -156,9 +157,11 @@
     <ClCompile Include="image.cpp" />
     <ClCompile Include="imageManager.cpp" />
     <ClCompile Include="iniDataManager.cpp" />
+    <ClCompile Include="item.cpp" />
     <ClCompile Include="keyManager.cpp" />
     <ClCompile Include="killer.cpp" />
     <ClCompile Include="playGround.cpp" />
+    <ClCompile Include="pompoko.cpp" />
     <ClCompile Include="progressBar.cpp" />
     <ClCompile Include="sceneManager.cpp" />
     <ClCompile Include="selectScene.cpp" />
@@ -176,6 +179,7 @@
   <ItemGroup>
     <ClInclude Include="action.h" />
     <ClInclude Include="animation.h" />
+    <ClInclude Include="frog.h" />
     <ClInclude Include="hammerBullet.h" />
     <ClInclude Include="fireBullet.h" />
     <ClInclude Include="button.h" />
@@ -196,9 +200,11 @@
     <ClInclude Include="image.h" />
     <ClInclude Include="imageManager.h" />
     <ClInclude Include="iniDataManager.h" />
+    <ClInclude Include="item.h" />
     <ClInclude Include="keyManager.h" />
     <ClInclude Include="killer.h" />
     <ClInclude Include="playGround.h" />
+    <ClInclude Include="pompoko.h" />
     <ClInclude Include="progressBar.h" />
     <ClInclude Include="randomFunction.h" />
     <ClInclude Include="Resource.h" />

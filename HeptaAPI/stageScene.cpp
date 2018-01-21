@@ -53,6 +53,12 @@ HRESULT stageScene::init(void)
 			_player = new fire;
 			_player->init(_characterKey[KIND_FIRE], 50, WINSIZEY / 2);
 		break;
+
+		case KIND_POMPOKO:
+			_player = new pompoko;
+			_player->init(_characterKey[KIND_POMPOKO], 50, WINSIZEY / 2);
+			break;
+
 	}
 
 	return S_OK;

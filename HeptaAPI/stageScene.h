@@ -3,6 +3,7 @@
 #include "mario.h"
 #include "hammer.h"
 #include "fire.h"
+#include "pompoko.h"
 
 // 아이템 박스 구조체!!
 struct ItemBox

@@ -32,12 +32,40 @@ HRESULT soundManager::init()
 
 void soundManager::release()
 {
+	if (*_channel != NULL || *_sound != NULL)
+	{
+		for (int i = 0; i < TOTALSOUNDBUFFER; ++i)
+		{
+			if (_channel != NULL)
+			{
+				if (_channel[i])_channel[i]->stop();
+			}
+			if (_sound != NULL)
+			{
+				if (_sound[i] != NULL) _sound[i]->release();
+			}
+		}
+	}
+
+	//메모리 지워준다
+	//배열이므로
+	SAFE_DELETE_ARRAY(_channel);
+	SAFE_DELETE_ARRAY(_sound);
+
+	//마지막으로 FMOD 사운드 시스템 닫아줌
+	if (_system != NULL)
+	{
+		_system->release();
+		_system->close();		//셧더 내립니다
+	}
 
 }
 
 void soundManager::update()	
 {
-
+	//볼륨이 바뀌거나, 재생이 끝난 사운드를 채널에서 빼는 등
+	//다양한 작업을 자동으로 해준다.
+	_system->update();
 }
 
 
@@ -83,7 +111,7 @@ void soundManager::play(string keyName, float volume)
 	{
 		if (keyName == iter->first)
 		{
-			_system->playSound(_sound[count], NULL, false, &_channel[count]);
+			_system->playSound(*iter->second, NULL, false, &_channel[count]);
 
 			_channel[count]->setVolume(volume);
 			break;

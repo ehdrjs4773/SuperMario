@@ -34,6 +34,7 @@ void frog::update()
 void frog::render()											
 {
 	mario::render();
+	this->draw();
 }
 
 void frog::draw()

@@ -62,7 +62,7 @@ void MF::fire(float x, float y, float angle)
 	ZeroMemory(&bullet, sizeof(tagBullet));
 	bullet.imageName = new image;
 	bullet.imageName->init(".\\bmps\\fire\\fire_bullet.bmp", 0, 0, 45, 15, 4, 1, false, true, RGB(255, 0, 255));
-	bullet.speed = 0.1f;
+	bullet.speed = 0.18f;
 	bullet.x = bullet.fireX = x;
 	bullet.y = bullet.fireY = y;
 	bullet.angle = angle;
@@ -81,31 +81,42 @@ void MF::move()
 
 	for (_viBullet = _vBullet.begin(); _viBullet != _vBullet.end();)
 	{
-	
+
 		char temp[32];
 		sprintf(temp, "뒷배경");
-		int probeY = _viBullet->y +_viBullet->imageName->getFrameHeight() / 2 - 1;
+		int probeY = _viBullet->y + _viBullet->imageName->getFrameHeight() / 2 - 1;
 
-				COLORREF color = GetPixel(IMAGEMANAGER->findImage(temp)->getMemDC(), _viBullet->x+_viBullet->imageName->getFrameWidth(), probeY);
-				if ((GetRValue(color) == 0 &&
-					GetGValue(color) == 255 &&
-					GetBValue(color) == 255)|| (GetRValue(color) == 255 &&
-						GetGValue(color) == 255 &&
-						GetBValue(color) == 0))//지면 pixel 충돌시
-				{
-					_viBullet->jumpPower = 1.0f;
-				}
+		COLORREF color = GetPixel(IMAGEMANAGER->findImage(temp)->getMemDC(), _viBullet->x + _viBullet->imageName->getFrameWidth() / 2, probeY);
+		if ((GetRValue(color) == 0 &&
+			GetGValue(color) == 255 &&
+			GetBValue(color) == 255) ||
+			(GetRValue(color) == 255 &&
+				GetGValue(color) == 255 &&
+				GetBValue(color) == 0)) //지면 pixel 충돌시
+		{
+			_viBullet->jumpPower = 1.0f;
+		}
 
-				_viBullet->x += cosf(_viBullet->angle)*_viBullet->speed * 12;
-				_viBullet->y -= _viBullet->jumpPower;
-				_viBullet->jumpPower -= gravity;
-				_viBullet->rc = RectMakeCenter(_viBullet->x, _viBullet->y,
-					_viBullet->imageName->getFrameWidth(),
-					_viBullet->imageName->getFrameHeight());
+		_viBullet->x += cosf(_viBullet->angle)*_viBullet->speed * 12;
+		_viBullet->y -= _viBullet->jumpPower;
+		_viBullet->jumpPower -= gravity;
+		_viBullet->rc = RectMakeCenter(_viBullet->x, _viBullet->y,
+			_viBullet->imageName->getFrameWidth(),
+			_viBullet->imageName->getFrameHeight());
 
-	
 
-		if (_range < getDistance(_viBullet->x, _viBullet->y, _viBullet->fireX, _viBullet->fireY))
+		//삭제조건
+		int probeX = _viBullet->x - _viBullet->imageName->getFrameWidth() / 2 * cosf(_viBullet->angle);
+		COLORREF color2 = GetPixel(IMAGEMANAGER->findImage(temp)->getMemDC(), probeX, _viBullet->y); //벽충돌
+		if (GetRValue(color2) == 0 &&
+			GetGValue(color2) == 0 &&
+			GetBValue(color2) == 255)
+		{
+			SAFE_RELEASE(_viBullet->imageName);
+			SAFE_DELETE(_viBullet->imageName);
+			_viBullet = _vBullet.erase(_viBullet);
+		}
+		else if (_range < getDistance(_viBullet->x, _viBullet->y, _viBullet->fireX, _viBullet->fireY))
 		{
 			SAFE_RELEASE(_viBullet->imageName);
 			SAFE_DELETE(_viBullet->imageName);

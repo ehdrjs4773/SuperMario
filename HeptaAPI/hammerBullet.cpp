@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "bullet.h"
+#include "hammerBullet.h"
 
 hammerBullet::hammerBullet()
 {

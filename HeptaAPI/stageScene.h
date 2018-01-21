@@ -2,6 +2,7 @@
 #include "gameNode.h"
 #include "mario.h"
 #include "hammer.h"
+#include "fire.h"
 
 // 아이템 박스 구조체!!
 struct ItemBox
@@ -20,7 +21,7 @@ private :
 	int _count;
 	ItemBox _itemBox[8]; //아이템 박스
 
-	hammer* _player;
+	mario* _player;
 
 
 public:

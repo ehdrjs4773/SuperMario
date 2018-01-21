@@ -1,6 +1,6 @@
 #pragma once
 #include "mario.h"
-#include "bullet.h"
+#include "hammerBullet.h"
 
 class hammer : public mario
 {

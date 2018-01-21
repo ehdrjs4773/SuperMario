@@ -48,6 +48,11 @@ HRESULT stageScene::init(void)
 			_player = new hammer;
 			_player->init(_characterKey[KIND_HAMMER], 50, WINSIZEY / 2);
 		break;
+
+		case KIND_FIRE:
+			_player = new fire;
+			_player->init(_characterKey[KIND_FIRE], 50, WINSIZEY / 2);
+		break;
 	}
 
 	return S_OK;

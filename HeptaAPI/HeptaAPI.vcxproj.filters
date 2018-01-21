@@ -174,9 +174,6 @@
     <ClInclude Include="hammer.h">
       <Filter>playGround\mario\mario_kind</Filter>
     </ClInclude>
-    <ClInclude Include="bullet.h">
-      <Filter>playGround\bullet</Filter>
-    </ClInclude>
     <ClInclude Include="enemy.h">
       <Filter>playGround\enemy</Filter>
     </ClInclude>
@@ -194,6 +191,18 @@
     </ClInclude>
     <ClInclude Include="turtle.h">
       <Filter>playGround\enemy\enemy_kind</Filter>
+    </ClInclude>
+    <ClInclude Include="fire.h">
+      <Filter>playGround\mario\mario_kind</Filter>
+    </ClInclude>
+    <ClInclude Include="hammerBullet.h">
+      <Filter>playGround\bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="fireBullet.h">
+      <Filter>playGround\bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="tagBullet.h">
+      <Filter>playGround\bullet</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -281,9 +290,6 @@
     <ClCompile Include="hammer.cpp">
       <Filter>playGround\mario\mario_kind</Filter>
     </ClCompile>
-    <ClCompile Include="bullet.cpp">
-      <Filter>playGround\bullet</Filter>
-    </ClCompile>
     <ClCompile Include="enemy.cpp">
       <Filter>playGround\enemy</Filter>
     </ClCompile>
@@ -301,6 +307,15 @@
     </ClCompile>
     <ClCompile Include="turtle.cpp">
       <Filter>playGround\enemy\enemy_kind</Filter>
+    </ClCompile>
+    <ClCompile Include="fire.cpp">
+      <Filter>playGround\mario\mario_kind</Filter>
+    </ClCompile>
+    <ClCompile Include="hammerBullet.cpp">
+      <Filter>playGround\bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="fireBullet.cpp">
+      <Filter>playGround\bullet</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

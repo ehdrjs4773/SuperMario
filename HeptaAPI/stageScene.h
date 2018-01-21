@@ -5,6 +5,7 @@
 #include "fire.h"
 #include "pompoko.h"
 #include "item.h"
+#include "enemyManager.h"
 
 // 아이템 박스 구조체!!
 struct ItemBox
@@ -27,7 +28,7 @@ private :
 	RECT _finishRect; // 끝내기 렉트
 	item* _item;
 	mario* _player;
-
+	enemyManager* _em;
 
 public:
 	stageScene();

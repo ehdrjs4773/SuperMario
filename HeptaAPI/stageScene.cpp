@@ -74,6 +74,9 @@ HRESULT stageScene::init(void)
 
 	}
 
+	_em = new enemyManager;
+	_em->init();
+
 	return S_OK;
 }
 
@@ -119,7 +122,7 @@ void stageScene::update(void)
 		}
 	}
 	
-	
+	_em->update();
 
 }
 
@@ -144,6 +147,8 @@ void stageScene::render(void)
 	}
 
 	_player->render();
+
+	_em->render();
 
 	CAMERAMANAGER->render(getMemDC());
 

@@ -1,5 +1,7 @@
 #pragma once
 #include "gameNode.h"
+#include "mario.h"
+#include "hammer.h"
 
 enum Phase		//페이즈에 따라 에너미의 무브를 바꾸기위해
 {
@@ -10,6 +12,8 @@ enum Phase		//페이즈에 따라 에너미의 무브를 바꾸기위해
 class enemy : public gameNode
 {
 private:
+	hammer * _player;
+
 	image * _imageName;
 	RECT _enemy;
 
@@ -18,11 +22,20 @@ private:
 	int _currentFrameX;
 	int _currentFrameY;
 
+	int _probeY;			//탐사축(Y Axis)
+	int _probeXRight;			//탐사축
+	int _probeXLeft;			//탐사축
+
 	int _count;
 	float _speed;
+	float _fallSpeed;
 	bool _isDie;
-	bool _directionX;
-	bool _directionY;
+	bool _directionXChange;
+	bool _directionYChange;
+	bool _isAir; //공중에있는지 판정
+
+	RECT _directionXRc;
+	RECT _directionYRc;
 
 public:
 	enemy();
@@ -37,8 +50,10 @@ public:
 
 	void setMoveType(int move) { _moveType = move; }
 
-	inline bool getDirectionX() { return _directionX; }
-	inline bool getDirectionY() { return _directionY; }
+	void enemyMove();
+
+	inline bool getDirectionX() { return _directionXChange; }
+	inline bool getDirectionY() { return _directionYChange; }
 	inline bool getIsDie()		{ return _isDie; }
 	inline RECT getEnemyRect()  { return _enemy; }
 };

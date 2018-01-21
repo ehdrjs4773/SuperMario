@@ -22,5 +22,7 @@ public:
 	void render();
 
 	inline void setPlayerMemoryAddressLink(mario* player) { _player = player; }
+
+	inline respawn* getRespawn() { return _respawn; }
 };
 

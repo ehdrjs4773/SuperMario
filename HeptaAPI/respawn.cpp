@@ -149,7 +149,7 @@ void respawn::setKiller(int move, int x, int y)
 	_killer->init("Å³·¯", PointMake(x, y));
 	_killer->setMoveType(move);
 
-	_vCuba.push_back(_killer);
+	_vKiller.push_back(_killer);
 }
 
 //-------------------------------------------------------------------

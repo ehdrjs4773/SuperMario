@@ -20,8 +20,8 @@ int selectScene::_frameTime = 0;
 HRESULT selectScene::init()
 {
 	// ¼±ÅÃ ¾À ¹è°æÀ½¾Ç
-	SOUNDMANAGER->addSound("selectScene_bgm", ".\\Sounds\\selectScene_bgm.mp3", true, true);
-	SOUNDMANAGER->play("selectScene_bgm", 0.3f);
+	SOUNDMANAGER->addSound("0. selectScene_bgm", ".\\sounds\\selectScene_bgm.mp3", true, true);
+	SOUNDMANAGER->play("0. selectScene_bgm", 0.3f);
 
 	// ¼±ÅÃ ¾À ¹è°æ ÀÌ¹ÌÁö
 	IMAGEMANAGER->addImage("select_background", ".\\bmps\\select_background.bmp", WINSIZEX, WINSIZEY, false, true, MAGENTA);
@@ -109,7 +109,7 @@ void selectScene::selectButtonClick()
 {
 	DATABASE->setCharacter(_currentClickedButton);
 	SCENEMANAGER->changeScene("stageScene");
-	SOUNDMANAGER->stop("selectScene_bgm");
+	SOUNDMANAGER->stop("0. selectScene_bgm");
 }
 
 void selectScene::selectBackButtonClick(int num)

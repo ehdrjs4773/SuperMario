@@ -48,6 +48,7 @@ enum MARIO_STATE
 	STATE_JUMP,
 	STATE_ATTACK,
 	STATE_DIE,
+	STATE_CLEAR,
 	STATE_END
 };
 
@@ -81,8 +82,12 @@ static string _stateKey[STATE_END] =
 	"_move",
 	"_jump",
 	"_attack",
-	"_die"
+	"_jump",
+	"_move"
 };
+
+// 전! 방! 선! 언!
+class enemyManager;
 
 class mario : public gameNode
 {
@@ -98,6 +103,8 @@ protected:
 
 	int _frameX;
 	int _frameTime;
+
+	enemyManager* _em;
 
 public:
 	mario();
@@ -117,7 +124,14 @@ public:
 
 	virtual void frameUpdate();
 
+	virtual void collisionControl();
+	virtual void collisionWithEnemy();
+
 	inline POINT getPos() { return PointMake(_x, _y); }
 	inline RECT getRC() { return _rc; }
+	inline MARIO_STATE getState() { return _state; }
+	inline void setJumpPower(float jp) { _jumpPower = jp; }
+
+	inline void setEMMemoryAddressLink(enemyManager* em) { _em = em; }
 };
 

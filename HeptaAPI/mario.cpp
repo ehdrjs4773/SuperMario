@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "mario.h"
+#include "enemyManager.h"
 
 
 
@@ -14,9 +15,11 @@ mario::~mario()
 
 HRESULT mario::init(const string imageName, float x, float y)
 {
+	// 마리오가 사용할 사운드 등록
+	SOUNDMANAGER->addSound("3. marioJump", ".\\sounds\\jump.mp3", false, false);
+
 	// 마리오가 사용할 이미지 등록
 	// 현재 고른 캐릭터에 따라 다르게 등록함
-
 	switch (DATABASE->getCharacter())
 	{
 		case KIND_POMPOKO:
@@ -82,14 +85,26 @@ void mario::release()
 
 void mario::update()
 {
-	// 마리오가 죽은 상황이 아니면 이동 및 공격 가능
-	if (_state != STATE_DIE)
+	if (_state != STATE_CLEAR)
 	{
-		this->move();			// 실제 마리오 움직임
-		this->attack();			// 마리오 공격!
+		// 마리오가 죽은 상황이 아니면 이동 및 공격 가능
+		if (_state != STATE_DIE)
+		{
+			this->move();			// 실제 마리오 움직임
+			this->attack();			// 마리오 공격!
+		}
+		this->falling();
+		_rc = RectMakeCenter(_x, _y, _width, _height);
+
+		if (_state != STATE_DIE)
+			this->collisionControl();
 	}
-	this->falling();
-	_rc = RectMakeCenter(_x, _y, _width, _height);
+	else
+	{
+		_y += _jumpPower;
+		_jumpPower -= GRAVITY;
+		_rc = RectMakeCenter(_x, _y, _width, _height);
+	}
 
 	this->frameUpdate();	// 마리오 프레임 업데이트
 }
@@ -248,8 +263,15 @@ void mario::move()
 			GetBValue(color3) == 0))
 		{
 			this->marioStateChange(STATE_JUMP);
-			_jumpPower = JUMPPOWER;
+
+			if (_imageName == "frog")
+				_jumpPower = JUMPPOWER + 1.0f;
+			else
+				_jumpPower = JUMPPOWER;
+
 			_y -= _jumpPower;
+
+			SOUNDMANAGER->play("3. marioJump");
 		}
 	}
 
@@ -268,13 +290,14 @@ void mario::falling()
 		for (int j = _y + IMAGEMANAGER->findImage(_imageName + _stateKey[_state])->getFrameHeight() / 2 - 1; j <= _y + IMAGEMANAGER->findImage(_imageName + _stateKey[_state])->getFrameHeight() / 2 + 1; ++j)
 		{
 			COLORREF color = GetPixel(IMAGEMANAGER->findImage(temp)->getMemDC(), i, j);
-			if ((GetRValue(color) == 0 &&
+			if (((GetRValue(color) == 0 &&
 				GetGValue(color) == 255 &&
 				GetBValue(color) == 255) ||
 				(GetRValue(color) == 255 &&
 				GetGValue(color) == 255 &&
 				GetBValue(color) == 0 &&
-				_jumpPower < 0))
+				_jumpPower < 0)) &&
+				_state != STATE_DIE)
 			{
 				_y = j - IMAGEMANAGER->findImage(_imageName + _stateKey[_state])->getFrameHeight() / 2;
 				_jumpPower = 0.0f;
@@ -291,7 +314,8 @@ void mario::falling()
 			}
 			if (GetRValue(color) == 255 &&
 				GetGValue(color) == 0 &&
-				GetBValue(color) == 0)
+				GetBValue(color) == 0 &&
+				_state != STATE_DIE)
 			{
 				this->marioStateChange(STATE_DIE);
 			}
@@ -400,5 +424,173 @@ void mario::frameUpdate()
 				_frameTime = 0;
 			}
 		break;
+		
+		case STATE_CLEAR:
+			if (_frameTime % 3 == 0)
+			{
+				_frameX++;
+
+				if (_frameX > IMAGEMANAGER->findImage(_imageName + _stateKey[_state])->getMaxFrameX())
+					_frameX = 0;
+
+				_frameTime = 0;
+			}
+		break;
+	}
+}
+
+void mario::collisionControl()
+{
+	this->collisionWithEnemy();
+}
+
+void mario::collisionWithEnemy()
+{
+	// 쿠바
+	for (int i = 0; i < _em->getRespawn()->getVCuba().size(); ++i)
+	{
+		RECT temp;
+		if (IntersectRect(&temp, &_rc, &_em->getRespawn()->getVCuba()[i]->getEnemyRect()))
+		{
+			// 겹친 부분의 가로, 세로 길이
+			int tempWidth = temp.right - temp.left;
+			int tempHeight = temp.bottom - temp.top;
+
+			// 가로길이 > 세로길이 == 위, 아래에서 부딪혔으면
+			if (tempWidth >= tempHeight)
+			{
+				// 플레이어가 위에 있다면 -> 적 사망
+				if (_y < _em->getRespawn()->getVCuba()[i]->getEnemyRect().bottom)
+				{
+					_em->getRespawn()->removeCuba(i);
+					this->marioStateChange(STATE_JUMP);
+					_jumpPower = JUMPPOWER - 1.0f;
+					_y -= _jumpPower;
+				}
+				else
+				{
+					this->marioStateChange(STATE_DIE);
+					_jumpPower = JUMPPOWER;
+					_y -= _jumpPower;
+				}
+			}
+			else
+			{
+				this->marioStateChange(STATE_DIE);
+				_jumpPower = JUMPPOWER;
+				_y -= _jumpPower;
+			}
+		}
+	}
+
+	// 킬러
+	for (int i = 0; i < _em->getRespawn()->getVKiller().size(); ++i)
+	{
+		RECT temp;
+		if (IntersectRect(&temp, &_rc, &_em->getRespawn()->getVKiller()[i]->getEnemyRect()))
+		{
+			// 겹친 부분의 가로, 세로 길이
+			int tempWidth = temp.right - temp.left;
+			int tempHeight = temp.bottom - temp.top;
+
+			// 가로길이 > 세로길이 == 위, 아래에서 부딪혔으면
+			if (tempWidth >= tempHeight)
+			{
+				// 플레이어가 위에 있다면 -> 적 사망
+				if (_y < _em->getRespawn()->getVKiller()[i]->getEnemyRect().bottom)
+				{
+					_em->getRespawn()->removeCuba(i);
+					this->marioStateChange(STATE_JUMP);
+					_jumpPower = JUMPPOWER - 1.0f;
+					_y -= _jumpPower;
+				}
+				else
+				{
+					this->marioStateChange(STATE_DIE);
+					_jumpPower = JUMPPOWER;
+					_y -= _jumpPower;
+				}
+			}
+			else
+			{
+				this->marioStateChange(STATE_DIE);
+				_jumpPower = JUMPPOWER;
+				_y -= _jumpPower;
+			}
+		}
+	}
+
+	// 꽃
+	for (int i = 0; i < _em->getRespawn()->getVFlower().size(); ++i)
+	{
+		RECT temp;
+		if (IntersectRect(&temp, &_rc, &_em->getRespawn()->getVFlower()[i]->getEnemyRect()))
+		{
+			// 겹친 부분의 가로, 세로 길이
+			int tempWidth = temp.right - temp.left;
+			int tempHeight = temp.bottom - temp.top;
+
+			// 가로길이 > 세로길이 == 위, 아래에서 부딪혔으면
+			if (tempWidth >= tempHeight)
+			{
+				// 플레이어가 위에 있다면 -> 적 사망
+				if (_y < _em->getRespawn()->getVFlower()[i]->getEnemyRect().bottom)
+				{
+					_em->getRespawn()->removeCuba(i);
+					this->marioStateChange(STATE_JUMP);
+					_jumpPower = JUMPPOWER - 1.0f;
+					_y -= _jumpPower;
+				}
+				else
+				{
+					this->marioStateChange(STATE_DIE);
+					_jumpPower = JUMPPOWER;
+					_y -= _jumpPower;
+				}
+			}
+			else
+			{
+				this->marioStateChange(STATE_DIE);
+				_jumpPower = JUMPPOWER;
+				_y -= _jumpPower;
+			}
+		}
+	}
+
+	// 거북이
+	for (int i = 0; i < _em->getRespawn()->getVTurtle().size(); ++i)
+	{
+		RECT temp;
+		if (IntersectRect(&temp, &_rc, &_em->getRespawn()->getVTurtle()[i]->getEnemyRect()))
+		{
+			// 겹친 부분의 가로, 세로 길이
+			int tempWidth = temp.right - temp.left;
+			int tempHeight = temp.bottom - temp.top;
+
+			// 가로길이 > 세로길이 == 위, 아래에서 부딪혔으면
+			if (tempWidth >= tempHeight)
+			{
+				// 플레이어가 위에 있다면 -> 적 사망
+				if (_y < _em->getRespawn()->getVTurtle()[i]->getEnemyRect().bottom)
+				{
+					_em->getRespawn()->removeCuba(i);
+					this->marioStateChange(STATE_JUMP);
+					_jumpPower = JUMPPOWER - 1.0f;
+					_y -= _jumpPower;
+				}
+				else
+				{
+					this->marioStateChange(STATE_DIE);
+					_jumpPower = JUMPPOWER;
+					_y -= _jumpPower;
+				}
+			}
+			else
+			{
+				this->marioStateChange(STATE_DIE);
+				_jumpPower = JUMPPOWER;
+				_y -= _jumpPower;
+			}
+		}
 	}
 }

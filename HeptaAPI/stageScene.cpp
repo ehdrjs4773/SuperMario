@@ -4,6 +4,8 @@
 
 
 stageScene::stageScene()
+	: _player(NULL),
+	_em(NULL)
 {
 }
 
@@ -25,9 +27,9 @@ HRESULT stageScene::init(void)
 	IMAGEMANAGER->addImage("finalImage", ".\\bmps\\finalstar.bmp", 26, 26, false, true, RGB(255, 0, 255));
 
 
-	SOUNDMANAGER->addSound("배경음악", ".\\Sounds\\bgm.mp3", true, true);
-	SOUNDMANAGER->play("배경음악", 1.0F);
-	SOUNDMANAGER->addSound("박스쳤다", ".\\Sounds\\boxcollstion.mp3", false, false);
+	SOUNDMANAGER->addSound("1. 배경음악", ".\\sounds\\bgm.mp3", true, true);
+	SOUNDMANAGER->play("1. 배경음악", 1.0F);
+	SOUNDMANAGER->addSound("2. 박스쳤다", ".\\sounds\\boxcollstion.mp3", false, false);
 
 
 
@@ -58,29 +60,35 @@ HRESULT stageScene::init(void)
 	switch (DATABASE->getCharacter())
 	{
 		case KIND_HAMMER:
-			_player = new hammer;
+			if (_player == NULL)
+				_player = new hammer;
 			_player->init(_characterKey[KIND_HAMMER], 50, WINSIZEY / 2);
 		break;
 
 		case KIND_FIRE:
-			_player = new fire;
+			if (_player == NULL)
+				_player = new fire;
 			_player->init(_characterKey[KIND_FIRE], 50, WINSIZEY / 2);
 		break;
 
 		case KIND_POMPOKO:
-			_player = new pompoko;
+			if (_player == NULL)
+				_player = new pompoko;
 			_player->init(_characterKey[KIND_POMPOKO], 50, WINSIZEY / 2);
 		break;
 
 		case KIND_FROG:
-			_player = new frog;
+			if (_player == NULL)
+				_player = new frog;
 			_player->init(_characterKey[KIND_FROG], 50, WINSIZEY / 2);
 		break;
 	}
 
-	_em = new enemyManager;
+	if (_em == NULL)
+		_em = new enemyManager;
 	_em->init();
 
+	_player->setEMMemoryAddressLink(_em);
 	_em->setPlayerMemoryAddressLink(_player);
 
 	return S_OK;
@@ -106,7 +114,9 @@ void stageScene::update(void)
 
 	_player->update();
 	_item->update();
-	CAMERAMANAGER->cameraMove(_player->getPos().x, _player->getPos().y);
+
+	if (_player->getState() != STATE_CLEAR)
+		CAMERAMANAGER->cameraMove(_player->getPos().x, _player->getPos().y);
 
 	RECT temp;
 	for (int i = 0; i < 8; i++)
@@ -120,7 +130,7 @@ void stageScene::update(void)
 				if (_itemBox[i].Collsion) return;
 
 				_itemBox[i].Collsion = true;
-				SOUNDMANAGER->play("박스쳤다", 1.0f);
+				SOUNDMANAGER->play("2. 박스쳤다", 1.0f);
 				_itemBox[i].itemImage = IMAGEMANAGER->findImage("박스충돌");
 				_item->setItem(_itemBox[i].rc.left, _itemBox[i].rc.top, ITME_COIN, "코인");
 				break;
@@ -130,6 +140,19 @@ void stageScene::update(void)
 	
 	_em->update();
 
+
+	// 마리오 죽었을 떄 처리
+	if (_player->getState() == STATE_DIE &&
+		_player->getPos().y > 1000)
+		this->init();
+
+	// 스테이지 클리어 상자랑 인터섹트렉트
+	if (IntersectRect(&temp, &_player->getRC(), &_finishRect) &&
+		_player->getState() != STATE_CLEAR)
+	{
+		_player->marioStateChange(STATE_CLEAR);
+		_player->setJumpPower(0.0f);
+	}
 }
 
 

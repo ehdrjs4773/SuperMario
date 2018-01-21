@@ -45,6 +45,10 @@ HRESULT stageScene::init(void)
 		_itemBox[5].rc = RectMakeCenter(1480, 376, 16, 16);
 
 	}
+
+	_finishRect = RectMakeCenter(2696, 344, 26, 26);
+
+
 	_currentFrameX = 0;
 
 	_item = new item;
@@ -127,8 +131,11 @@ void stageScene::render(void)
 	_item->render();
 
 	if (_isDebug)
-		IMAGEMANAGER->findImage("µÞ¹è°æ")->render(CAMERAMANAGER->getMemDC());
 
+	{
+		IMAGEMANAGER->findImage("µÞ¹è°æ")->render(CAMERAMANAGER->getMemDC());
+		Rectangle(CAMERAMANAGER->getMemDC(), _finishRect.left, _finishRect.top, _finishRect.right, _finishRect.bottom);
+	}
 	if (!_isDebug)
 	for (int i = 0; i < 8; i++)
 	{

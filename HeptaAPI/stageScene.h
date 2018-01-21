@@ -23,6 +23,8 @@ private :
 	int _count;
 	ItemBox _itemBox[8]; //아이템 박스
 
+
+	RECT _finishRect; // 끝내기 렉트
 	item* _item;
 	mario* _player;
 

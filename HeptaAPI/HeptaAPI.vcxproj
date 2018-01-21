@@ -163,6 +163,7 @@
     <ClCompile Include="playGround.cpp" />
     <ClCompile Include="pompoko.cpp" />
     <ClCompile Include="progressBar.cpp" />
+    <ClCompile Include="respawn.cpp" />
     <ClCompile Include="sceneManager.cpp" />
     <ClCompile Include="selectScene.cpp" />
     <ClCompile Include="mario.cpp" />
@@ -208,6 +209,7 @@
     <ClInclude Include="progressBar.h" />
     <ClInclude Include="randomFunction.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="respawn.h" />
     <ClInclude Include="sceneManager.h" />
     <ClInclude Include="selectScene.h" />
     <ClInclude Include="mario.h" />

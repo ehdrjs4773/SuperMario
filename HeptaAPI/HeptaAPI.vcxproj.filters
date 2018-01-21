@@ -216,6 +216,9 @@
     <ClInclude Include="frog.h">
       <Filter>playGround\mario\mario_kind</Filter>
     </ClInclude>
+    <ClInclude Include="respawn.h">
+      <Filter>playGround\enemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -337,6 +340,9 @@
     </ClCompile>
     <ClCompile Include="frog.cpp">
       <Filter>playGround\mario\mario_kind</Filter>
+    </ClCompile>
+    <ClCompile Include="respawn.cpp">
+      <Filter>playGround\enemy</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

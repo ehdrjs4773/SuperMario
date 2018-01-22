@@ -19,7 +19,7 @@ fire::~fire()
 	 mario::init(imageName, x, y);
 
 	 _missile = new MF;
-	 _missile->init( 30, 100);
+	 _missile->init( 30, 800);
 
 	 return S_OK;
  }
@@ -98,10 +98,11 @@ void fire::missileDraw()
 
 void fire::collisionEnemyWithFireBullet()
 {
-	bool isCollision = false;
+	//cuba
+	//bool isCollision = false;
 	for (int i = 0; i < _missile->getVBullet().size(); ++i)
 	{
-		isCollision = false;
+		//isCollision = false;
 
 		for (int j = 0; j < _em->getRespawn()->getVCuba().size(); ++j)
 		{
@@ -110,11 +111,58 @@ void fire::collisionEnemyWithFireBullet()
 			{
 				_missile->removeMissile(i);
 				_em->getRespawn()->removeCuba(j);
-				isCollision = true;
+				//isCollision = true;
 				break;
 			}
 		}
 
-		if (isCollision) break;
+		//if (isCollision) break;
+	}
+
+	//TURTLE
+	for (int i = 0; i < _missile->getVBullet().size(); ++i)
+	{
+		for (int j = 0; j < _em->getRespawn()->getVTurtle().size(); ++j)
+		{
+			RECT temp;
+			if (IntersectRect(&temp, &_missile->getVBullet()[i].rc, &_em->getRespawn()->getVTurtle()[j]->getEnemyRect()))
+			{
+				_missile->removeMissile(i);
+				_em->getRespawn()->removeTurtle(j);
+
+				break;
+			}
+		}
+	}
+
+	//Flower
+	for (int i = 0; i < _missile->getVBullet().size(); ++i)
+	{
+		for (int j = 0; j < _em->getRespawn()->getVFlower().size(); ++j)
+		{
+			RECT temp;
+			if (IntersectRect(&temp, &_missile->getVBullet()[i].rc, &_em->getRespawn()->getVFlower()[j]->getEnemyRect()))
+			{
+				_missile->removeMissile(i);
+				_em->getRespawn()->removeFlower(j);
+
+				break;
+			}
+		}
+	}
+	//Killwer
+	for (int i = 0; i < _missile->getVBullet().size(); ++i)
+	{
+		for (int j = 0; j < _em->getRespawn()->getVKiller().size(); ++j)
+		{
+			RECT temp;
+			if (IntersectRect(&temp, &_missile->getVBullet()[i].rc, &_em->getRespawn()->getVKiller()[j]->getEnemyRect()))
+			{
+				_missile->removeMissile(i);
+				_em->getRespawn()->removeKiller(j);
+
+				break;
+			}
+		}
 	}
 }

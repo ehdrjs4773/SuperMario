@@ -4,7 +4,6 @@
 #include <vector> 
 
 
-
 //발사할때 생성해서 발사하는 총알
 class MF : public gameNode
 {
@@ -14,6 +13,8 @@ private:
 
 	float _range;
 	int _bulletMax;
+
+
 
 public:
 	MF();
@@ -30,7 +31,14 @@ public:
 
 	void removeMissile(int arrNum);
 
+
+
+
 	//접근자
 	vector<tagBullet> getVBullet() { return _vBullet; }
 	vector<tagBullet>::iterator getVIBullet() { return _viBullet; }
+
+
+
+
 };

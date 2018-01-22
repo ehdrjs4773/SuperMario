@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "hammer.h"
+#include "enemyManager.h"
 
 
 
@@ -39,6 +40,8 @@ void hammer::update()
 	keyControl();
 	attack();
 	_bullet->update();
+
+	this->collisionEnemyWithHammer();
 
 }
 void hammer::render() 
@@ -96,5 +99,71 @@ void hammer::keyControl()
 	{
 		_isUpKey = false;
 	}
+}
+
+void hammer::collisionEnemyWithHammer(void)
+{
+	//CUBA
+	for (int i = 0; i < _bullet->getVBullet().size(); ++i)
+	{
+		for (int j = 0; j < _em->getRespawn()->getVCuba().size(); ++j)
+		{
+			RECT temp;
+			if (IntersectRect(&temp, &_bullet->getVBullet()[i].rc, &_em->getRespawn()->getVCuba()[j]->getEnemyRect()))
+			{
+				_bullet->eraseBullet(i);
+				_em->getRespawn()->removeCuba(j);
+
+				break;
+			}
+		}
+	}
+	//TURTLE
+	for (int i = 0; i < _bullet->getVBullet().size(); ++i)
+	{
+		for (int j = 0; j < _em->getRespawn()->getVTurtle().size(); ++j)
+		{
+			RECT temp;
+			if (IntersectRect(&temp, &_bullet->getVBullet()[i].rc, &_em->getRespawn()->getVTurtle()[j]->getEnemyRect()))
+			{
+				_bullet->eraseBullet(i);
+				_em->getRespawn()->removeTurtle(j);
+
+				break;
+			}
+		}
+	}
+	//killer
+	for (int i = 0; i < _bullet->getVBullet().size(); ++i)
+	{
+		for (int j = 0; j < _em->getRespawn()->getVKiller().size(); ++j)
+		{
+			RECT temp;
+			if (IntersectRect(&temp, &_bullet->getVBullet()[i].rc, &_em->getRespawn()->getVKiller()[j]->getEnemyRect()))
+			{
+				_bullet->eraseBullet(i);
+				_em->getRespawn()->removeKiller(j);
+
+				break;
+			}
+		}
+	}
+	//flower
+
+	for (int i = 0; i < _bullet->getVBullet().size(); ++i)
+	{
+		for (int j = 0; j < _em->getRespawn()->getVFlower().size(); ++j)
+		{
+			RECT temp;
+			if (IntersectRect(&temp, &_bullet->getVBullet()[i].rc, &_em->getRespawn()->getVFlower()[j]->getEnemyRect()))
+			{
+				_bullet->eraseBullet(i);
+				_em->getRespawn()->removeFlower(j);
+
+				break;
+			}
+		}
+	}
+
 }
 

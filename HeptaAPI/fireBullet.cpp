@@ -2,6 +2,7 @@
 #include "fireBullet.h"
 
 
+
 //==============================================
 // ## MF ## 발사명령 떨어지면 생성되는 미쏼 ##
 //==============================================
@@ -25,6 +26,7 @@ void MF::release()
 void MF::update()
 {
 	move();
+
 }
 
 void MF::render()
@@ -50,6 +52,8 @@ void MF::render()
 			_viBullet->count = 0;
 		}
 	}
+
+	//Rectangle(CAMERAMANAGER->getMemDC(), _viBullet->rc.left, _viBullet->rc.top, _viBullet->rc.right, _viBullet->rc.bottom);
 }
 
 

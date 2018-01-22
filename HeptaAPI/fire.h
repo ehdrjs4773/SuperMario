@@ -21,6 +21,7 @@ public:
 	 void missileMove();
 	 void missileDraw();
 
+	 void collisionEnemyWithFireBullet();
 
 	fire();
 	~fire();

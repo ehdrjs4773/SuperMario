@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "fire.h"
-
+#include "enemyManager.h"
 
 
 fire::fire()
@@ -32,7 +32,7 @@ fire::~fire()
 
 	this->missileMove();
 
-	
+	this->collisionEnemyWithFireBullet();
 
 }
 
@@ -94,4 +94,27 @@ void fire::missileMove()
 void fire::missileDraw()
 {
 	_missile->render();
+}
+
+void fire::collisionEnemyWithFireBullet()
+{
+	bool isCollision = false;
+	for (int i = 0; i < _missile->getVBullet().size(); ++i)
+	{
+		isCollision = false;
+
+		for (int j = 0; j < _em->getRespawn()->getVCuba().size(); ++j)
+		{
+			RECT temp;
+			if (IntersectRect(&temp, &_missile->getVBullet()[i].rc, &_em->getRespawn()->getVCuba()[j]->getEnemyRect()))
+			{
+				_missile->removeMissile(i);
+				_em->getRespawn()->removeCuba(j);
+				isCollision = true;
+				break;
+			}
+		}
+
+		if (isCollision) break;
+	}
 }
